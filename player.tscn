@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://mvj4lrfmjcl1"]
+
+[ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_31kne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xbst"]
+atlas = ExtResource("1_31kne")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deyfh"]
+atlas = ExtResource("1_31kne")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dt0b"]
+atlas = ExtResource("1_31kne")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yb2dw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xbst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deyfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dt0b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ugyn"]
+atlas = ExtResource("1_31kne")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsvkx"]
+atlas = ExtResource("1_31kne")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb6qw"]
+atlas = ExtResource("1_31kne")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qddxp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ugyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsvkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb6qw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimationTree"]
+position = Vector2(421, 301)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_yb2dw")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimationTree"]
+position = Vector2(421, 301)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_qddxp")
+autoplay = "default"
