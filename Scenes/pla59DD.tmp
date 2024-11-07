@@ -304,12 +304,14 @@ animations = [{
 script = ExtResource("1_bkxxq")
 
 [node name="player" type="AnimatedSprite2D" parent="."]
+position = Vector2(421, 301)
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_yb2dw")
 animation = &"moveLeft"
 autoplay = "idleRight"
 
 [node name="clothes" type="AnimatedSprite2D" parent="."]
+position = Vector2(421, 301)
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_qddxp")
 animation = &"idleLeft"
