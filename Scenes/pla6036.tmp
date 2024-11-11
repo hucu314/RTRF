@@ -1,7 +1,7 @@
 [gd_scene load_steps=101 format=3 uid="uid://mvj4lrfmjcl1"]
 
 [ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_31kne"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_bkxxq"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_bkxxq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yglwn"]
 atlas = ExtResource("1_31kne")
