@@ -53,3 +53,19 @@ func dirAnimation(dir:Vector2):
 	if dir.x == 0 and dir.y == 1:
 		dirAnim = 'Down'
 	move_and_slide()
+
+func changeAnim(movement,direction):
+	player.play(str(movement)+str(direction))
+	clothes.play(str(movement)+str(direction))
+
+func playDir(x,y):
+	print(x)
+	print(y)
+	if x<0 and y == 0:
+		dir = 'Left'
+	if x>0 and y == 0:
+		dir = 'Right'
+	if x==0 and y < 0:
+		dir = 'Up'
+	if x==0 and y > 0:
+		dir = 'Down'

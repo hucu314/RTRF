@@ -1,7 +1,7 @@
 [gd_scene load_steps=101 format=3 uid="uid://mvj4lrfmjcl1"]
 
 [ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_31kne"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_bkxxq"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_bkxxq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yglwn"]
 atlas = ExtResource("1_31kne")
@@ -277,7 +277,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0esu7")
 }],
-"loop": false,
+"loop": true,
 "name": &"idleLeft",
 "speed": 5.0
 }, {
@@ -291,7 +291,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_poge5")
 }],
-"loop": false,
+"loop": true,
 "name": &"idleRight",
 "speed": 5.0
 }, {
@@ -333,7 +333,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_daw5r")
 }],
-"loop": false,
+"loop": true,
 "name": &"moveLeft",
 "speed": 5.0
 }, {
@@ -347,7 +347,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hmdmw")
 }],
-"loop": false,
+"loop": true,
 "name": &"moveRight",
 "speed": 5.0
 }, {
