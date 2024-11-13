@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://mvj4lrfmjcl1"]
+[gd_scene load_steps=102 format=3 uid="uid://mvj4lrfmjcl1"]
 
 [ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_31kne"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jk3co"]
@@ -841,7 +841,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owqfl"]
+radius = 72.0
+height = 178.0
+
+[node name="player" type="CharacterBody2D"]
 script = ExtResource("1_jk3co")
 
 [node name="player" type="AnimatedSprite2D" parent="."]
@@ -855,3 +859,7 @@ scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_qddxp")
 animation = &"shootUp"
 autoplay = "idleRight"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CapsuleShape2D_owqfl")

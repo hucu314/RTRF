@@ -40,7 +40,6 @@ func fireGun(direction):
 	isAttacking = true
 	changeAnim('shoot',direction)
 func changeAnim(movement,direction):
-	print('done')
 	player.play(str(movement)+str(direction))
 	clothes.play(str(movement)+str(direction))
 func dirAnimation(dir:Vector2):
