@@ -1,11 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b20lt6j60dwy4"]
+[gd_scene load_steps=10 format=3 uid="uid://b20lt6j60dwy4"]
 
 [ext_resource type="Script" path="res://Scripts/basic_ship.gd" id="1_ky85s"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_cbo8r"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mgnm3"]
-radius = 20.25
-height = 74.75
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjymy"]
 atlas = ExtResource("2_cbo8r")
@@ -21,7 +17,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sjymy")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -33,10 +29,6 @@ animations = [{
 "name": &"sailing",
 "speed": 5.0
 }]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmrmy"]
-atlas = ExtResource("2_cbo8r")
-region = Rect2(608, 488, 32, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32t0h"]
 atlas = ExtResource("2_cbo8r")
@@ -52,11 +44,8 @@ region = Rect2(416, 610, 32, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b1r4j"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gmrmy")
-}],
-"loop": false,
+"frames": [],
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -70,43 +59,39 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_88mov")
 }],
-"loop": false,
+"loop": true,
 "name": &"sailing",
 "speed": 5.0
 }]
 
 [node name="basicShip" type="CharacterBody2D"]
-rotation = 6.28319
+rotation = 4.71239
 scale = Vector2(8, 8)
 script = ExtResource("1_ky85s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_mgnm3")
-
-[node name="ship" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cbo8r")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
 
-[node name="stick" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("2_cbo8r")
 region_enabled = true
 region_rect = Rect2(32, 480, 32, 32)
 
-[node name="sail" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o76ep")
 animation = &"idle"
-autoplay = "idle"
 
 [node name="Right Waves" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 0.5)
 sprite_frames = SubResource("SpriteFrames_b1r4j")
-animation = &"sailing"
-autoplay = "idle"
+animation = &"idle"
+autoplay = "sailing"
 
 [node name="Left Waves" type="AnimatedSprite2D" parent="."]
 position = Vector2(-16, 0.5)
 sprite_frames = SubResource("SpriteFrames_b1r4j")
 animation = &"sailing"
-autoplay = "idle"
+autoplay = "sailing"
 flip_h = true
