@@ -1,10 +1,9 @@
 Asset Sources:
-Items: https://opengameart.org/content/48-pirate-stuff-icons
-Characters: https://foozlecc.itch.io/scallywag-pirates
-Ships: https://foozlecc.itch.io/scallywag-ships
-
-Tutorials/References:
+	Items: https://opengameart.org/content/48-pirate-stuff-icons
+	Characters: https://foozlecc.itch.io/scallywag-pirates
+	Ships: https://foozlecc.itch.io/scallywag-ships
 
 
+	External Help:
 
-External Help:
+	Tutorials/References:
