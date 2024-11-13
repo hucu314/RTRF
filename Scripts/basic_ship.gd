@@ -2,6 +2,10 @@ extends CharacterBody2D
 @onready var sail: AnimatedSprite2D = $sail
 @onready var rightWaves: AnimatedSprite2D = $"Right Waves"
 @onready var leftWaves: AnimatedSprite2D = $"Left Waves"
+@onready var ship = $ship
+
+
+
 
 
 
@@ -25,10 +29,23 @@ func _physics_process(delta: float) -> void:
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			changeAnim('idle')
 		move_and_slide()
-func changeAnim(movement):
-	sail.play(str(movement))
-	leftWaves.play(str(movement))
-	rightWaves.play(str(movement))
+		
+#changes animation for movement
+func changeAnim(movement,damaged):
+	if damaged == 'notDamaged':
+		sail.play(str(movement))
+		leftWaves.play(str(movement))
+		rightWaves.play(str(movement))
+		ship.play(str(damaged))
+	if damaged == 'damaged':
+		sail.play(str(movement))
+		ship.play(str(damaged))
+	if damaged == 'destroyed':
+		sail.play(str(damaged))
+		
+	
+	
+	
 func dirAnimation(dir:Vector2):
 	if dir.x == -1 and dir.y == 0:
 		self.rotation_degrees = 90
@@ -38,3 +55,14 @@ func dirAnimation(dir:Vector2):
 		self.rotation_degrees = 180
 	if dir.x == 0 and dir.y == 1:
 		self.rotation_degrees = 0
+func boatHealth(healthPerc):
+	if healthPerc > 50:
+		return 'notDamaged'
+	elif healthPerc > 0:
+		return 'damaged'
+	elif healthPerc <= 0:
+		return 'destroyed'
+		
+		
+		
+	

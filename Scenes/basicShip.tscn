@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b20lt6j60dwy4"]
+[gd_scene load_steps=17 format=3 uid="uid://b20lt6j60dwy4"]
 
 [ext_resource type="Script" path="res://Scripts/basic_ship.gd" id="1_ky85s"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_cbo8r"]
@@ -6,6 +6,49 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mgnm3"]
 radius = 20.25
 height = 74.75
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrbss"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orr0w"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7ycs"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jsan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrbss")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orr0w")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7ycs")
+}],
+"loop": true,
+"name": &"notDamaged",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csm0e"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 336, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjymy"]
 atlas = ExtResource("2_cbo8r")
@@ -17,6 +60,14 @@ region = Rect2(96, 320, 32, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o76ep"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csm0e")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sjymy")
@@ -83,10 +134,9 @@ script = ExtResource("1_ky85s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mgnm3")
 
-[node name="ship" type="Sprite2D" parent="."]
-texture = ExtResource("2_cbo8r")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 64)
+[node name="ship" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3jsan")
+animation = &"notDamaged"
 
 [node name="stick" type="Sprite2D" parent="."]
 texture = ExtResource("2_cbo8r")
@@ -95,7 +145,7 @@ region_rect = Rect2(32, 480, 32, 32)
 
 [node name="sail" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o76ep")
-animation = &"idle"
+animation = &"damaged"
 autoplay = "idle"
 
 [node name="Right Waves" type="AnimatedSprite2D" parent="."]

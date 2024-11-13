@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 			else:
 				variables.sailing = false
 	trackPlayer()
-			
+	
 	#camera following
 
 	pass
