@@ -842,6 +842,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_jk3co")
 
 [node name="player" type="AnimatedSprite2D" parent="."]
