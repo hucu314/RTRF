@@ -149,8 +149,7 @@ shape = SubResource("CapsuleShape2D_mgnm3")
 
 [node name="ship" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3jsan")
-animation = &"destroyed"
-autoplay = "notDamaged"
+animation = &"notDamaged"
 
 [node name="stick" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wwoot")
