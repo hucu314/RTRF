@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drtcmflejj7oy"
-path="res://.godot/imported/playatileset2.png-8662515ea46fb28f01d5112483843bdb.ctex"
+uid="uid://c5ihirhdla3dp"
+path="res://.godot/imported/playatileset1.png-8947e8bf26854680b9e32e7ec00df869.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSet/playatileset2.png"
-dest_files=["res://.godot/imported/playatileset2.png-8662515ea46fb28f01d5112483843bdb.ctex"]
+source_file="res://Assets/World Tiles/playatileset1.png"
+dest_files=["res://.godot/imported/playatileset1.png-8947e8bf26854680b9e32e7ec00df869.ctex"]
 
 [params]
 
