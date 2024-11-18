@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var last_position: Vector2
 @onready var dirAnim = 'none'
 @onready var isAttacking = false
-const SPEED = 600.0
+const SPEED = 100.0
 
 
 func _physics_process(delta: float) -> void:
