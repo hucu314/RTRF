@@ -1,12 +1,16 @@
 extends CharacterBody2D
+class_name Player
 @onready var player: AnimatedSprite2D = $player
 @onready var clothes: AnimatedSprite2D = $clothes
 @onready var last_position: Vector2
 @onready var dirAnim = 'none'
 @onready var isAttacking = false
 const SPEED = 600.0
+@onready var resources
 
-
+func _ready():
+	resources = 10
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)

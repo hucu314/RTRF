@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b20lt6j60dwy4"]
+[gd_scene load_steps=21 format=3 uid="uid://doaaxcusvmyb0"]
 
 [ext_resource type="Script" path="res://Scripts/basic_ship.gd" id="1_ky85s"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_cbo8r"]
@@ -46,36 +46,50 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g58uj"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 512, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb1i4"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 480, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wwoot"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g58uj")
+}],
 "loop": true,
 "name": &"destroyed",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb1i4")
+}],
 "loop": true,
-"name": &"normal",
+"name": &"notDamaged",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_csm0e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f86vu"]
 atlas = ExtResource("2_cbo8r")
-region = Rect2(64, 336, 32, 16)
+region = Rect2(64, 384, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjymy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8dvt"]
 atlas = ExtResource("2_cbo8r")
-region = Rect2(64, 320, 32, 16)
+region = Rect2(96, 352, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_neb5y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l10rb"]
 atlas = ExtResource("2_cbo8r")
-region = Rect2(96, 320, 32, 16)
+region = Rect2(64, 352, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o76ep"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_csm0e")
+"texture": SubResource("AtlasTexture_f86vu")
 }],
 "loop": true,
 "name": &"damaged",
@@ -83,7 +97,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sjymy")
+"texture": SubResource("AtlasTexture_g8dvt")
 }],
 "loop": false,
 "name": &"idle",
@@ -91,7 +105,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_neb5y")
+"texture": SubResource("AtlasTexture_l10rb")
 }],
 "loop": true,
 "name": &"sailing",
@@ -139,6 +153,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ki6l"]
+radius = 38.625
+height = 128.25
+
 [node name="basicShip" type="CharacterBody2D"]
 rotation = 6.28319
 scale = Vector2(8, 8)
@@ -149,7 +167,7 @@ shape = SubResource("CapsuleShape2D_mgnm3")
 
 [node name="ship" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3jsan")
-animation = &"destroyed"
+animation = &"notDamaged"
 autoplay = "notDamaged"
 
 [node name="stick" type="AnimatedSprite2D" parent="."]
@@ -158,7 +176,7 @@ animation = &"destroyed"
 
 [node name="sail" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o76ep")
-animation = &"damaged"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Right Waves" type="AnimatedSprite2D" parent="."]
@@ -173,3 +191,17 @@ sprite_frames = SubResource("SpriteFrames_b1r4j")
 animation = &"sailing"
 autoplay = "idle"
 flip_h = true
+
+[node name="interactArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactArea"]
+shape = SubResource("CapsuleShape2D_8ki6l")
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+item_count = 2
+item_0/text = "test1"
+item_1/text = "test2"
+item_1/id = 1
+
+[connection signal="body_entered" from="interactArea" to="." method="_on_interactArea_entered"]
+[connection signal="body_exited" from="interactArea" to="." method="_on_interactArea_exited"]

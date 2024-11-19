@@ -11,6 +11,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('takeDamage'):
+		ship.health -= 10
 	if variables.canBoard == true and variables.sailing == false or variables.canLeave == true and variables.sailing == true:
 		if Input.is_action_just_pressed('switch'):
 			if variables.sailing == false:
