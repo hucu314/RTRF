@@ -14,13 +14,16 @@ const SPEED = 300.0
 @onready var healthColor = $ProgressBar.get_theme_stylebox('fill')
 
 func _ready():
-	isEditable = false
 	healthBar.value = 100
 
 func _physics_process(delta: float) -> void:
 	var durability = (health/totalHealth)*100
 	healthBarUpdate(durability)
 	shipMenu()
+	if menu.visible == true:
+		variables.inMenu = true
+	else:
+		variables.inMenu = false
 	
 	if variables.sailing == true:	
 		# Add the gravity.
@@ -91,9 +94,18 @@ func _on_interactArea_entered(body):
 	if not variables.sailing:
 		if body is Player:
 			isEditable = true
+			
 
 
 func _on_interactArea_exited(body):
 	if not variables.sailing:
 		if body is Player:
 			isEditable = false
+
+
+
+
+func _on_popup_menu_id_pressed(id: int) -> void:
+	if id == 0:
+		health += 10
+	pass # Replace with function body.

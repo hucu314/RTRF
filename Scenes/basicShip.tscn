@@ -202,7 +202,7 @@ shape = SubResource("CapsuleShape2D_8ki6l")
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 item_count = 2
-item_0/text = "test1"
+item_0/text = "fix (10 wood)"
 item_1/text = "test2"
 item_1/id = 1
 
@@ -224,3 +224,5 @@ offset_bottom = -23.0003
 
 [connection signal="body_entered" from="interactArea" to="." method="_on_interactArea_entered"]
 [connection signal="body_exited" from="interactArea" to="." method="_on_interactArea_exited"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_popup_menu_id_pressed"]
+[connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]

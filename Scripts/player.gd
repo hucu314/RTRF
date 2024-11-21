@@ -31,9 +31,9 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 				velocity.y = move_toward(velocity.y, 0, SPEED)
 				changeAnim('idle',dirAnim)
-		if Input.is_action_just_pressed('use'):
+		if Input.is_action_just_pressed('use') and not variables.inMenu:
 			fireGun(dirAnim)
-		if Input.is_action_just_pressed('shoot'):
+		if Input.is_action_just_pressed('shoot') and not variables.inMenu:
 			swordAttack(dirAnim)
 		if player.is_playing() == false:
 			isAttacking = false
