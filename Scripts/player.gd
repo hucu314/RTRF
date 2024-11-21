@@ -7,6 +7,7 @@ class_name Player
 @onready var isAttacking = false
 const SPEED = 600.0
 @onready var resources
+@onready var weapon = 'sword'
 
 func _ready():
 	resources = 10
@@ -14,6 +15,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
+	 
 	if variables.sailing == false:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -31,10 +33,11 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 				velocity.y = move_toward(velocity.y, 0, SPEED)
 				changeAnim('idle',dirAnim)
-		if Input.is_action_just_pressed('use') and not variables.inMenu:
-			fireGun(dirAnim)
-		if Input.is_action_just_pressed('shoot') and not variables.inMenu:
-			swordAttack(dirAnim)
+		if Input.is_action_just_pressed('attack') and not variables.inMenu:
+			if weapon == 'gun':
+				fireGun(dirAnim)
+			elif weapon == 'sword':
+				swordAttack(dirAnim)
 		if player.is_playing() == false:
 			isAttacking = false
 func swordAttack(direction):

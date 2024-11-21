@@ -1,5 +1,5 @@
 extends Node2D
-@onready var camera = $Camera2D
+@onready var camera = $camera
 @onready var ship = $basicShip
 @onready var player = $player
 
@@ -11,6 +11,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('switchWeapon'):
+		if player.weapon == 'sword':
+			player.weapon = 'gun'
+		elif player.weapon == 'gun':
+			player.weapon = 'sword'
 	if Input.is_action_just_pressed('takeDamage'):
 		ship.health -= 10
 	if variables.canBoard == true and variables.sailing == false or variables.canLeave == true and variables.sailing == true:
