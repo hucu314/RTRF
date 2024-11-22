@@ -10,15 +10,14 @@ extends CharacterBody2D
 const SPEED = 300.0
 @onready var isAttacking = false
 @onready var menu = $PopupMenu
-@onready var healthBar = $ProgressBar
-@onready var healthColor = $ProgressBar.get_theme_stylebox('fill')
+@onready var durability = (health/totalHealth)*100
+
 
 func _ready():
-	healthBar.value = 100
+	pass
 
 func _physics_process(delta: float) -> void:
-	var durability = (health/totalHealth)*100
-	healthBarUpdate(durability)
+	durability = (health/totalHealth)*100
 	shipMenu()
 	if menu.visible == true:
 		variables.inMenu = true
@@ -60,15 +59,6 @@ func changeAnim(movement,damaged):
 		sail.play('destroyed')
 		stick.play('destroyed')
 		ship.play('destroyed')
-
-func healthBarUpdate(durability):
-	healthBar.value = durability
-	if durability>60:
-		healthColor.set_bg_color(Color('3fff25'))
-	elif durability>30:
-		healthColor.set_bg_color(Color("f8ff1d"))
-	elif durability>0:
-		healthColor.set_bg_color(Color("FF0000"))
 		
 	
 func shipMenu():
