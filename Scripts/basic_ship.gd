@@ -11,7 +11,7 @@ const SPEED = 300.0
 @onready var isAttacking = false
 @onready var menu = $PopupMenu
 @onready var durability = (health/totalHealth)*100
-
+const shipCrosshair = preload("res://Assets/ELR_Crosshairs/shipCrosshair.png")
 
 func _ready():
 	pass
@@ -19,13 +19,22 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	durability = (health/totalHealth)*100
 	shipMenu()
+	
+	
+
+	
 	if menu.visible == true:
 		variables.inMenu = true
 	else:
 		variables.inMenu = false
 	
 	if variables.sailing == true:	
-		# Add the gravity.
+	
+		#changes cursor for ship
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Input.set_custom_mouse_cursor(shipCrosshair,Input.CURSOR_ARROW,Vector2(0,0))
+	
+		# ship movement.
 		isEditable = true
 		var xdirection := Input.get_axis("left", "right")
 		var ydirection := Input.get_axis("up","down")

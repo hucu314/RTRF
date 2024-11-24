@@ -8,6 +8,13 @@ class_name Player
 const SPEED = 600.0
 @onready var resources
 @onready var weapon = 'sword'
+const gunCrosshair = preload("res://Assets/ELR_Crosshairs/gunCrosshair.png")
+const ammo = preload("res://Scenes/bullet.tscn")
+var bulletLocation: Vector2
+const blockTest = preload("res://blockTest.tscn")
+@onready var bullets: Node = $"../bullets"
+@onready var testBlocks: Node = $"../testBlocks"
+
 
 func _ready():
 	resources = 10
@@ -15,7 +22,16 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
-	 
+	#mouse settings for weapon
+	if weapon == 'gun':
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Input.set_custom_mouse_cursor(gunCrosshair,Input.CURSOR_ARROW,Vector2(28,28))
+	if weapon == 'sword':
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+		
+		
+	#code for player movement and animation
 	if variables.sailing == false:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -28,34 +44,80 @@ func _physics_process(delta: float) -> void:
 			if direction:
 				velocity.x = direction.x * SPEED
 				velocity.y = direction.y * SPEED
-				changeAnim('move',dirAnim)
+				if isAttacking == false:
+					changeAnim('move',dirAnim)
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 				velocity.y = move_toward(velocity.y, 0, SPEED)
-				changeAnim('idle',dirAnim)
-		if Input.is_action_just_pressed('attack') and not variables.inMenu:
-			if weapon == 'gun':
-				fireGun(dirAnim)
-			elif weapon == 'sword':
-				swordAttack(dirAnim)
+				if isAttacking == false:
+					changeAnim('idle',dirAnim)
+			if Input.is_action_just_pressed('attack') and not variables.inMenu:
+				if weapon == 'gun':
+					fireGun(get_local_mouse_position())
+				elif weapon == 'sword':
+					swordAttack(dirAnim)
+			move_and_slide()
 		if player.is_playing() == false:
 			isAttacking = false
 func swordAttack(direction):
 	isAttacking = true
 	changeAnim('attack',direction)
-func fireGun(direction):
-	isAttacking = true
-	changeAnim('shoot',direction)
+	
+	
+func fireGun(target):
+	
+	
+	#var test = blockTest.instantiate()
+	#test.global_position = get_global_mouse_position()
+	#testBlocks.add_child(test)
+	var mousePosition = get_local_mouse_position()
+	if mousePosition.x > 100 or mousePosition.x < -100 or mousePosition.y > 100 or mousePosition.y < -100:
+		isAttacking = true
+		print(target)
+		gunDir(mousePosition)
+		var bullet = ammo.instantiate()
+		bullet.global_position = bulletLocation
+		bullet.target = get_global_mouse_position()
+		bullets.add_child(bullet)
+		changeAnim('shoot',dirAnim)
+	#var dir = dirAnimation(target)
+	
+	
+	
+	#changeAnim('shoot',dir)
 func changeAnim(movement,direction):
 	player.play(str(movement)+str(direction))
 	clothes.play(str(movement)+str(direction))
+	
+	
+	
 func dirAnimation(dir:Vector2):
-	if dir.x == -1 and dir.y == 0:
+	if dir.x < 0 and dir.y < 500 and dir.y > -500:
 		dirAnim = 'Left'
-	if dir.x == 1 and dir.y == 0:
+	elif dir.x > 0 and dir.y < 500 and dir.y > -500:
 		dirAnim = 'Right'
-	if dir.x == 0 and dir.y == -1:
+	elif dir.y < 0:
 		dirAnim = 'Up'
-	if dir.x == 0 and dir.y == 1:
+	elif dir.y > 0:
 		dirAnim = 'Down'
-	move_and_slide()
+
+func gunDir(dir:Vector2):
+	#Left
+	if dir.x < -250 and dir.y < 500 and dir.y > -500:
+		dirAnim = 'Left'
+		bulletLocation = global_position + Vector2(-77,21)
+	#Right
+	elif dir.x > 250 and dir.y < 500 and dir.y > -500:
+		dirAnim = 'Right'
+		bulletLocation = global_position + Vector2(77,21)
+	#Up
+	elif dir.y < 0:
+		dirAnim = 'Up'
+		bulletLocation = global_position + Vector2(55,-36)
+	#Down
+	elif dir.y > 0:
+		dirAnim = 'Down'
+		bulletLocation = global_position + Vector2(-55,80)
+
+
+	pass # Replace with function body.

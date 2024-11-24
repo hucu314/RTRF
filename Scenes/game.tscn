@@ -12,7 +12,7 @@ position = Vector2(352, -157)
 script = ExtResource("1_lxxfh")
 
 [node name="player" parent="." instance=ExtResource("1_4juek")]
-position = Vector2(-379, 137)
+position = Vector2(-369, 40)
 
 [node name="basicShip" parent="." instance=ExtResource("2_auf6a")]
 position = Vector2(621, 361)
@@ -27,6 +27,10 @@ script = null
 [node name="RayCast2D" type="RayCast2D" parent="board"]
 
 [node name="camera" parent="." instance=ExtResource("6_i7ffd")]
+
+[node name="bullets" type="Node" parent="."]
+
+[node name="testBlocks" type="Node" parent="."]
 
 [connection signal="body_entered" from="board" to="." method="_on_board_body_entered"]
 [connection signal="body_exited" from="board" to="." method="_on_board_body_exited"]
