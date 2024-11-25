@@ -5,7 +5,7 @@ class_name Player
 @onready var last_position: Vector2
 @onready var dirAnim = 'none'
 @onready var isAttacking = false
-const SPEED = 600.0
+const SPEED = 100.0
 @onready var resources
 @onready var weapon = 'sword'
 const gunCrosshair = preload("res://Assets/ELR_Crosshairs/gunCrosshair.png")

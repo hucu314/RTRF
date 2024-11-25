@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bplr144egy5kw"]
+[gd_scene load_steps=3 format=3 uid="uid://co7k4d3fpxehh"]
 
 [ext_resource type="Texture2D" uid="uid://cvgoraoauhs3i" path="res://Assets/hearts.png" id="1_cbfcd"]
 [ext_resource type="Texture2D" uid="uid://c2fk06b13ut5f" path="res://Assets/items/PNG/Transperent/Icon47.png" id="2_t3af7"]
 
 [node name="camera" type="Camera2D"]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(4, 4)
 
 [node name="playerHealth" type="ProgressBar" parent="."]
 offset_left = -960.0
