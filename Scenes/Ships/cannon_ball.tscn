@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2pbyusurvdmu"]
+
+[ext_resource type="Script" path="res://Scripts/cannonBall.gd" id="1_k2fyj"]
+[ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_w4ay0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17cq7"]
+atlas = ExtResource("2_w4ay0")
+region = Rect2(448, 624, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfm20"]
+atlas = ExtResource("2_w4ay0")
+region = Rect2(464, 624, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mdoi"]
+atlas = ExtResource("2_w4ay0")
+region = Rect2(480, 624, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xkqn"]
+atlas = ExtResource("2_w4ay0")
+region = Rect2(496, 624, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ffe0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17cq7")
+}],
+"loop": false,
+"name": &"ball",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfm20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mdoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xkqn")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivarm"]
+radius = 32.0624
+
+[node name="cannonBall" type="CharacterBody2D"]
+script = ExtResource("1_k2fyj")
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_0ffe0")
+animation = &"explosion"
+autoplay = "ball"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ivarm")
+
+[connection signal="animation_finished" from="AnimatedSprite2d" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="enterBody"]

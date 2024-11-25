@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://boykr1q8ejkox"]
+
+[ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_4juek"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_lxxfh"]
+[ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/basicShip.tscn" id="2_auf6a"]
+[ext_resource type="Script" path="res://Scripts/game_variables.gd" id="3_u6ldb"]
+[ext_resource type="PackedScene" uid="uid://l0m3v726lgfs" path="res://Scenes/board.tscn" id="5_r7peq"]
+[ext_resource type="PackedScene" uid="uid://bplr144egy5kw" path="res://Scenes/camera.tscn" id="6_i7ffd"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(352, -157)
+script = ExtResource("1_lxxfh")
+
+[node name="player" parent="." instance=ExtResource("1_4juek")]
+position = Vector2(-379, 137)
+
+[node name="basicShip" parent="." instance=ExtResource("2_auf6a")]
+position = Vector2(621, 361)
+
+[node name="gameVariables" type="Node" parent="."]
+script = ExtResource("3_u6ldb")
+
+[node name="board" parent="." instance=ExtResource("5_r7peq")]
+position = Vector2(-754, 175)
+script = null
+
+[node name="RayCast2D" type="RayCast2D" parent="board"]
+
+[node name="camera" parent="." instance=ExtResource("6_i7ffd")]
+
+[connection signal="body_entered" from="board" to="." method="_on_board_body_entered"]
+[connection signal="body_exited" from="board" to="." method="_on_board_body_exited"]

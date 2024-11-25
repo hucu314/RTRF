@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attackDown",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -223,7 +223,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attackLeft",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -237,7 +237,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attackRight",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -251,7 +251,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attackUp",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -263,9 +263,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5dt0b")
 }],
-"loop": true,
+"loop": false,
 "name": &"idleDown",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -279,7 +279,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idleLeft",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -293,7 +293,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idleRight",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -307,7 +307,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idleUp",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -321,7 +321,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"moveDown",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -335,7 +335,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"moveLeft",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -349,7 +349,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"moveRight",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -363,7 +363,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"moveUp",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -377,7 +377,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shootDown",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -391,7 +391,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shootLeft",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -405,7 +405,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shootRight",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -419,7 +419,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shootUp",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhl2p"]
@@ -842,24 +842,26 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owqfl"]
-radius = 6.0
-height = 16.0
+radius = 72.0
+height = 178.0
 
 [node name="player" type="CharacterBody2D"]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_jk3co")
 
 [node name="player" type="AnimatedSprite2D" parent="."]
+scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_yb2dw")
-animation = &"idleDown"
-autoplay = "idleDown"
+animation = &"shootUp"
+autoplay = "idleRight"
 
 [node name="clothes" type="AnimatedSprite2D" parent="."]
+scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_qddxp")
-animation = &"idleDown"
-autoplay = "idleDown"
+animation = &"shootUp"
+autoplay = "idleRight"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_owqfl")
 
 [connection signal="animation_finished" from="player" to="." method="_on_player_animation_finished"]
