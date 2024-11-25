@@ -17,7 +17,7 @@ var bulletLocation: Vector2
 
 func _ready():
 	resources = 10
-	
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
@@ -28,15 +28,15 @@ func _physics_process(delta: float) -> void:
 	if weapon == 'sword':
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
-		
-		
+
+
 	#code for player movement and animation
 	if variables.sailing == false:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 		var xdirection := Input.get_axis("left", "right")
 		var ydirection := Input.get_axis("up","down")
-		
+
 		var direction = Vector2(xdirection,ydirection)
 		dirAnimation(direction)
 		if isAttacking == false:
@@ -61,11 +61,11 @@ func _physics_process(delta: float) -> void:
 func swordAttack(direction):
 	isAttacking = true
 	changeAnim('attack',direction)
-	
-	
+
+
 func fireGun(target):
-	
-	
+
+
 	#var test = blockTest.instantiate()
 	#test.global_position = get_global_mouse_position()
 	#testBlocks.add_child(test)
@@ -80,16 +80,16 @@ func fireGun(target):
 		bullets.add_child(bullet)
 		changeAnim('shoot',dirAnim)
 	#var dir = dirAnimation(target)
-	
-	
-	
+
+
+
 	#changeAnim('shoot',dir)
 func changeAnim(movement,direction):
 	player.play(str(movement)+str(direction))
 	clothes.play(str(movement)+str(direction))
-	
-	
-	
+
+
+
 func dirAnimation(dir:Vector2):
 	if dir.x < 0 and dir.y < 500 and dir.y > -500:
 		dirAnim = 'Left'
