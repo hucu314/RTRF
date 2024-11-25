@@ -1,0 +1,205 @@
+[gd_scene load_steps=21 format=3 uid="uid://df5t5cpncbxof"]
+
+[ext_resource type="Script" path="res://Scripts/galleon.gd" id="1_gjmn6"]
+[ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_vsc5f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_61sri"]
+radius = 28.0
+height = 122.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbjr0"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(496, 128, 48, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6ob7"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(496, 256, 48, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byssk"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(496, 0, 48, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kojki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbjr0")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6ob7")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byssk")
+}],
+"loop": true,
+"name": &"notDamaged",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbfq4"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(96, 576, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uogte"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(96, 544, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0757j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbfq4")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uogte")
+}],
+"loop": true,
+"name": &"notDamaged",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l31rr"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(64, 448, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj3mp"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(64, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcsik"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(96, 416, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41atf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l31rr")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj3mp")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcsik")
+}],
+"loop": true,
+"name": &"sailing",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmrmy"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(608, 488, 32, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32t0h"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(352, 610, 32, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2p36"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(384, 610, 32, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88mov"]
+atlas = ExtResource("2_vsc5f")
+region = Rect2(416, 610, 32, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xphne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmrmy")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32t0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2p36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88mov")
+}],
+"loop": false,
+"name": &"sailing",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qckj2"]
+radius = 48.0
+height = 162.0
+
+[node name="shipPlayer" type="CharacterBody2D"]
+scale = Vector2(8, 8)
+script = ExtResource("1_gjmn6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_61sri")
+
+[node name="ship" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kojki")
+animation = &"damaged"
+autoplay = "notDamaged"
+
+[node name="stick" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0757j")
+animation = &"destroyed"
+
+[node name="sail" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_41atf")
+animation = &"damaged"
+autoplay = "idle"
+
+[node name="Right Waves" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, 11.5)
+sprite_frames = SubResource("SpriteFrames_xphne")
+animation = &"sailing"
+autoplay = "idle"
+
+[node name="Left Waves" type="AnimatedSprite2D" parent="."]
+position = Vector2(-24, 11.5)
+sprite_frames = SubResource("SpriteFrames_xphne")
+animation = &"sailing"
+autoplay = "idle"
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_qckj2")
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_popup_menu_id_pressed"]

@@ -11,7 +11,6 @@ const SPEED = 600.0
 const gunCrosshair = preload("res://Assets/ELR_Crosshairs/gunCrosshair.png")
 const ammo = preload("res://Scenes/bullet.tscn")
 var bulletLocation: Vector2
-const blockTest = preload("res://blockTest.tscn")
 @onready var bullets: Node = $"../bullets"
 @onready var testBlocks: Node = $"../testBlocks"
 

@@ -1,6 +1,6 @@
 extends Node2D
 @onready var camera = $camera
-@onready var ship = $basicShip
+@onready var ship = $shipPlayer
 @onready var player = $player
 @onready var shipHealthBar: ProgressBar = $camera/shipHealth
 @onready var shipHealthColor = $camera/shipHealth.get_theme_stylebox('fill')
@@ -55,7 +55,7 @@ func trackPlayer():
 func _on_board_body_entered(body):
 	if body.name == 'player':
 		variables.canBoard = true
-	if body.name == 'basicShip':
+	if body.name == 'shipPlayer':
 		variables.canLeave = true
 	pass # Replace with function body.
 
@@ -63,7 +63,7 @@ func _on_board_body_entered(body):
 func _on_board_body_exited(body):
 	if body.name == 'player':
 		variables.canBoard = false
-	if body.name == 'basicShip':
+	if body.name == 'shipPlayer':
 		variables.canLeave = false
 	pass # Replace with function body.
 	

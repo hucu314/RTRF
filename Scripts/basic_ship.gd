@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name Ship
+
 @onready var sail: AnimatedSprite2D = $sail
 @onready var rightWaves: AnimatedSprite2D = $"Right Waves"
 @onready var leftWaves: AnimatedSprite2D = $"Left Waves"
@@ -7,11 +9,18 @@ extends CharacterBody2D
 @onready var health: float = 100
 @onready var stick = $stick
 @onready var isEditable = false
-const SPEED = 300.0
+var SPEED = 300.0
 @onready var isAttacking = false
 @onready var menu = $PopupMenu
 @onready var durability = (health/totalHealth)*100
 const shipCrosshair = preload("res://Assets/ELR_Crosshairs/shipCrosshair.png")
+var dirAnim = 'none'
+
+#change this
+const ammo = preload("res://Scenes/Ships/cannon_ball.tscn")
+var bulletLocation: Vector2
+@onready var bullets: Node = $"../bullets"
+@onready var testBlocks: Node = $"../testBlocks"
 
 func _ready():
 	pass
@@ -20,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	durability = (health/totalHealth)*100
 	shipMenu()
 	
-	
+	print(variables.canLeave)
 
 	
 	if menu.visible == true:
@@ -32,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	
 		#changes cursor for ship
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		Input.set_custom_mouse_cursor(shipCrosshair,Input.CURSOR_ARROW,Vector2(0,0))
+		Input.set_custom_mouse_cursor(shipCrosshair,Input.CURSOR_ARROW,Vector2(28,28))
 	
 		# ship movement.
 		isEditable = true
@@ -49,6 +58,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			changeAnim('idle',durability)
+		if Input.is_action_just_pressed('attack') and not variables.inMenu:
+			print('fire')
+			fireCannon(get_local_mouse_position())
 		move_and_slide()
 		
 #changes animation for movement
@@ -87,6 +99,39 @@ func dirAnimation(dir:Vector2):
 		self.rotation_degrees = 180
 	if dir.x == 0 and dir.y == 1:
 		self.rotation_degrees = 0
+
+
+func fireCannon(target):
+	var mousePosition = get_local_mouse_position()
+	#if mousePosition.x > 100 or mousePosition.x < -100 or mousePosition.y > 100 or mousePosition.y < -100:
+	isAttacking = true
+	print(target)
+	cannonDir(mousePosition)
+	var bullet = ammo.instantiate()
+	bullet.global_position = bulletLocation
+	bullet.target = get_global_mouse_position()
+	bullets.add_child(bullet)
+	pass
+
+
+func cannonDir(dir:Vector2):
+	#Left
+	if dir.x < -250 and dir.y < 500 and dir.y > -500:
+		dirAnim = 'Left'
+		bulletLocation = global_position + Vector2(-77,21)
+	#Right
+	elif dir.x > 250 and dir.y < 500 and dir.y > -500:
+		dirAnim = 'Right'
+		bulletLocation = global_position + Vector2(77,21)
+	#Up
+	elif dir.y < 0:
+		dirAnim = 'Up'
+		bulletLocation = global_position + Vector2(55,-36)
+	#Down
+	elif dir.y > 0:
+		dirAnim = 'Down'
+		bulletLocation = global_position + Vector2(-55,80)
+
 
 
 func _on_interactArea_entered(body):
