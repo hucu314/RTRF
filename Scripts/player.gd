@@ -64,13 +64,13 @@ func swordAttack(direction):
 
 
 func fireGun(target):
-
+	
 
 	#var test = blockTest.instantiate()
 	#test.global_position = get_global_mouse_position()
 	#testBlocks.add_child(test)
 	var mousePosition = get_local_mouse_position()
-	if mousePosition.x > 100 or mousePosition.x < -100 or mousePosition.y > 100 or mousePosition.y < -100:
+	if mousePosition.x > 12.5 or mousePosition.x < -12.5 or mousePosition.y > 12.5 or mousePosition.y < -12.5:
 		isAttacking = true
 		print(target)
 		gunDir(mousePosition)
@@ -91,9 +91,9 @@ func changeAnim(movement,direction):
 
 
 func dirAnimation(dir:Vector2):
-	if dir.x < 0 and dir.y < 500 and dir.y > -500:
+	if dir.x < 0:
 		dirAnim = 'Left'
-	elif dir.x > 0 and dir.y < 500 and dir.y > -500:
+	elif dir.x > 0:
 		dirAnim = 'Right'
 	elif dir.y < 0:
 		dirAnim = 'Up'
@@ -102,21 +102,21 @@ func dirAnimation(dir:Vector2):
 
 func gunDir(dir:Vector2):
 	#Left
-	if dir.x < -250 and dir.y < 500 and dir.y > -500:
+	if dir.x < -31.25 and dir.y < 62.5 and dir.y > -62.5:
 		dirAnim = 'Left'
-		bulletLocation = global_position + Vector2(-77,21)
+		bulletLocation = global_position + Vector2(-9.625,2.625)
 	#Right
-	elif dir.x > 250 and dir.y < 500 and dir.y > -500:
+	elif dir.x > 31.25 and dir.y < 62.5 and dir.y > -62.5:
 		dirAnim = 'Right'
-		bulletLocation = global_position + Vector2(77,21)
+		bulletLocation = global_position + Vector2(9.625,2.625)
 	#Up
 	elif dir.y < 0:
 		dirAnim = 'Up'
-		bulletLocation = global_position + Vector2(55,-36)
+		bulletLocation = global_position + Vector2(9.625,-4.5)
 	#Down
 	elif dir.y > 0:
 		dirAnim = 'Down'
-		bulletLocation = global_position + Vector2(-55,80)
+		bulletLocation = global_position + Vector2(-9.625,10)
 
 
 	pass # Replace with function body.

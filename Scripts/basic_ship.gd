@@ -9,7 +9,7 @@ class_name Ship
 @onready var health: float = 100
 @onready var stick = $stick
 @onready var isEditable = false
-var SPEED = 300.0
+var SPEED = 40.0
 @onready var isAttacking = false
 @onready var menu = $PopupMenu
 @onready var durability = (health/totalHealth)*100
@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 	durability = (health/totalHealth)*100
 	shipMenu()
 	
-	print(variables.canLeave)
 
 	
 	if menu.visible == true:
@@ -116,21 +115,21 @@ func fireCannon(target):
 
 func cannonDir(dir:Vector2):
 	#Left
-	if dir.x < -250 and dir.y < 500 and dir.y > -500:
+	if dir.x < -3.125 and dir.y < 62.5 and dir.y > -62.5:
 		dirAnim = 'Left'
-		bulletLocation = global_position + Vector2(-77,21)
+		bulletLocation = global_position + Vector2(-9.625,2.625)
 	#Right
-	elif dir.x > 250 and dir.y < 500 and dir.y > -500:
+	elif dir.x > 3.125 and dir.y < 62.5 and dir.y > -62.5:
 		dirAnim = 'Right'
-		bulletLocation = global_position + Vector2(77,21)
+		bulletLocation = global_position + Vector2(9.625,2.625)
 	#Up
 	elif dir.y < 0:
 		dirAnim = 'Up'
-		bulletLocation = global_position + Vector2(55,-36)
+		bulletLocation = global_position + Vector2(6.875,-4.5)
 	#Down
 	elif dir.y > 0:
 		dirAnim = 'Down'
-		bulletLocation = global_position + Vector2(-55,80)
+		bulletLocation = global_position + Vector2(-6.875,10)
 
 
 

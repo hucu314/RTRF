@@ -3,7 +3,7 @@ var explode = false
 @onready var animation = $AnimatedSprite2d
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 1000
+	speed = 100
 	
 	print(speed)
 	
