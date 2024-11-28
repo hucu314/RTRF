@@ -9,7 +9,7 @@ class_name Ship
 @onready var health: float = 100
 @onready var stick = $stick
 @onready var isEditable = false
-var SPEED = 40.0
+var SPEED = 150.0
 @onready var isAttacking = false
 @onready var menu = $PopupMenu
 @onready var durability = (health/totalHealth)*100

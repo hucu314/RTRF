@@ -48,6 +48,7 @@ animations = [{
 radius = 32.0624
 
 [node name="cannonBall" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_k2fyj")
 
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]

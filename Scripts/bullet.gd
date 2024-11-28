@@ -3,7 +3,7 @@ class_name Ammo
 
 var target: Vector2
 var direction: Vector2
-var speed = 75
+var speed = 150
 
 
 func _ready():
