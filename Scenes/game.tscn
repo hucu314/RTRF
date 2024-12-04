@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_7wqmt"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_a5twp"]
 [ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
-[ext_resource type="PackedScene" uid="uid://bwr1t18hif8wb" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
+[ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
 [ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
 [ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
 [ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
