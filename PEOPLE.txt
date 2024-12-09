@@ -3,6 +3,8 @@ Asset Sources:
 	Characters: https://foozlecc.itch.io/scallywag-pirates
 	Ships: https://foozlecc.itch.io/scallywag-ships
 	Islands: https://adamchilds.itch.io/sandy-islands-v1-tile-set-16x16
+	Font: 
+
 
 	External Help:
 
