@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwr1t18hif8wb"]
+[gd_scene load_steps=8 format=3 uid="uid://be82sp565ry3l"]
 
 [ext_resource type="Texture2D" uid="uid://c5ihirhdla3dp" path="res://Assets/World Tiles/playatileset1.png" id="1_vaq22"]
 [ext_resource type="Texture2D" uid="uid://drtcmflejj7oy" path="res://Assets/World Tiles/playatileset2.png" id="2_b5n1h"]
