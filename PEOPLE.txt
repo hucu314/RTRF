@@ -3,7 +3,8 @@ Asset Sources:
 	Characters: https://foozlecc.itch.io/scallywag-pirates
 	Ships: https://foozlecc.itch.io/scallywag-ships
 	Islands: https://adamchilds.itch.io/sandy-islands-v1-tile-set-16x16
-	Font: 
+	Font: https://www.dafont.com/8-bit-1-6.font
+	Title Screen Image: https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2F%40gigbo.joe%2F20-incredible-8-bit-prompts-for-midjourney-vol-2-f611ac8331cc&psig=AOvVaw0fxKQsd3BQNVrGUpKiPm9Q&ust=1733856061347000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiagKirm4oDFQAAAAAdAAAAABBZ
 
 
 	External Help:
