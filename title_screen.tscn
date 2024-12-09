@@ -36,3 +36,15 @@ offset_right = 1047.0
 offset_bottom = 544.0
 theme_override_fonts/font = ExtResource("2_swl5t")
 text = "Credits"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 30.0
+offset_top = 51.0
+offset_right = 1056.0
+offset_bottom = 314.0
+theme_override_constants/line_separation = 20
+theme_override_fonts/normal_font = ExtResource("2_swl5t")
+theme_override_font_sizes/normal_font_size = 68
+theme_override_font_sizes/bold_font_size = 0
+text = "ROLLING TIDE:
+FINDING TREASURE"
