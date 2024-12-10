@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgsa8kwajjvvp"]
+[gd_scene load_steps=4 format=3 uid="uid://bgsa8kwajjvvp"]
 
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_1a012"]
 [ext_resource type="Texture2D" uid="uid://bn10ypbg165xa" path="res://Assets/titlescreen.png" id="1_io8hx"]
 [ext_resource type="FontFile" uid="uid://cxwbp5fyrmp7p" path="res://Assets/Fonts/8bit16.ttf" id="2_swl5t"]
 
-[node name="TitleScreen" type="Node2D"]
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1a012")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -39.0
-offset_top = -18.0
-offset_right = 2290.0
-offset_bottom = 1534.0
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 2323.0
+offset_bottom = 1544.0
 texture = ExtResource("1_io8hx")
-metadata/_edit_lock_ = true
 
 [node name="Start" type="Button" parent="."]
 offset_left = 758.0
@@ -48,3 +51,5 @@ theme_override_font_sizes/normal_font_size = 68
 theme_override_font_sizes/bold_font_size = 0
 text = "ROLLING TIDE:
 FINDING TREASURE"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
