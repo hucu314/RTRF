@@ -6,6 +6,7 @@ extends Node2D
 @onready var shipHealthColor = $camera/shipHealth.get_theme_stylebox('fill')
 @onready var playerHealthBar: ProgressBar = $camera/playerHealth
 @onready var playerHealthColor = $camera/playerHealth.get_theme_stylebox('fill')
+@onready var game_menu = $camera/gameMenu
 
 
 func _ready() -> void:
@@ -14,6 +15,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	print(variables.inMenu)
+	if Input.is_action_just_pressed('exit'):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Input.set_custom_mouse_cursor(shipCrosshair,Input.CURSOR_ARROW,Vector2(28,28))
+		game_menu.visible = true
+			
+		
 	#updates health bar for boat
 	updateBoatHealth()
 	#Switch Weapon

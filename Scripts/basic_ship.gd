@@ -82,9 +82,9 @@ func changeAnim(movement,damaged):
 		
 	
 func shipMenu():
-	if Input.is_action_just_pressed('interact') and isEditable:
+	if Input.is_action_just_pressed('interact') and isEditable and not variables.inMenu:
 		menu.visible = true
-	if Input.is_action_just_pressed('exit') or isEditable == false:
+	elif Input.is_action_just_pressed('interact') or isEditable == false:
 		menu.visible = false
 		
 	
