@@ -11,15 +11,36 @@ signal loadGame
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _process(delta):
+	if variables.titleScreen == true:
+		print('titleScreen')
+		var start = get_tree().get_nodes_in_group("startscreen")
+		for x in start:
+			x.visible = true
+		var load = get_tree().get_nodes_in_group("loadscreen")
+		for x in load:
+			x.visible = false
+	elif variables.loadScreen == true:
+		print('change')
+		var start = get_tree().get_nodes_in_group("startscreen")
+		for x in start:
+			x.visible = false
+		var load = get_tree().get_nodes_in_group("loadscreen")
+		for x in load:
+			x.visible = true
+
 
 func _on_start_pressed() -> void:
-	var start = get_tree().get_nodes_in_group("startscreen")
-	for x in start:
-		x.visible = false
-	var load = get_tree().get_nodes_in_group("loadscreen")
-	for x in load:
-		x.visible = true
-		print()
+	variables.loadScreen = true
+	variables.titleScreen = false
+	print('start')
+	#var start = get_tree().get_nodes_in_group("startscreen")
+	#for x in start:
+	#	x.visible = false
+	#var load = get_tree().get_nodes_in_group("loadscreen")
+	#for x in load:
+	#	x.visible = true
+	#	print()
 	#variables.load = true
 	#get_tree().change_scene_to_file("res://Scenes/game.tscn")
 	pass # Replace with function body.

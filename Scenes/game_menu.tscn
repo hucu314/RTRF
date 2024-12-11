@@ -22,13 +22,23 @@ script = ExtResource("1_qmbaa")
 [node name="Continue" type="Button" parent="."]
 layout_mode = 0
 offset_left = 431.4
-offset_top = 364.0
+offset_top = 308.0
 offset_right = 720.4
-offset_bottom = 428.0
+offset_bottom = 372.0
 theme_override_fonts/font = ExtResource("1_o8sg3")
 text = "Continue"
 
+[node name="Load" type="Button" parent="."]
+layout_mode = 0
+offset_left = 431.4
+offset_top = 404.0
+offset_right = 720.4
+offset_bottom = 468.0
+theme_override_fonts/font = ExtResource("1_o8sg3")
+text = "LOAD"
+
 [node name="SaveAndLeave" type="Button" parent="."]
+layout_mode = 0
 offset_left = 431.4
 offset_top = 500.0
 offset_right = 720.4
@@ -36,5 +46,9 @@ offset_bottom = 564.0
 theme_override_fonts/font = ExtResource("1_o8sg3")
 text = "Save & Quit"
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="SaveAndLeave" to="." method="_on_save_and_leave_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

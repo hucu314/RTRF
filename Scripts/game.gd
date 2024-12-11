@@ -24,7 +24,6 @@ func _ready() -> void:
 
 func load_game():
 	print('loading')
-	timer.start(2)
 	if variables.saveNum == 1:
 		var err = config1.load("res://savegame1.cfg")
 		if err == OK:
@@ -46,12 +45,12 @@ func load_game():
 			player.position.y = config3.get_value("player","y")
 			ship.position.x = config3.get_value("ship","x")
 			ship.position.y = config3.get_value("ship","y")
-		
-	loading.visible = false
+	timer.start(400)
 	print('works')
 	pass
 	
 func save_game():
+	print('saving')
 	if variables.saveNum == 1:
 		config1.set_value('player','x',round(player.position.x))
 		config1.set_value('player','y',round(player.position.y))

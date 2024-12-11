@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
 [ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
 [ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
-[ext_resource type="PackedScene" path="res://Scenes/game_menu.tscn" id="8_olnw4"]
+[ext_resource type="PackedScene" uid="uid://do6bfa7q0dvb7" path="res://Scenes/game_menu.tscn" id="8_olnw4"]
 [ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
 [ext_resource type="FontFile" uid="uid://cxwbp5fyrmp7p" path="res://Assets/Fonts/8bit16.ttf" id="9_1a4im"]
 [ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
@@ -37,6 +37,7 @@ visible = false
 scale = Vector2(2, 2)
 
 [node name="loading" type="ColorRect" parent="camera"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
