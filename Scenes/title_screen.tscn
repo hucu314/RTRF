@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm4qvnik622ug"]
+[gd_scene load_steps=4 format=3 uid="uid://bgsa8kwajjvvp"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_1a012"]
 [ext_resource type="Texture2D" uid="uid://bn10ypbg165xa" path="res://Assets/titlescreen.png" id="1_io8hx"]
@@ -17,30 +17,21 @@ offset_right = 2323.0
 offset_bottom = 1544.0
 texture = ExtResource("1_io8hx")
 
-[node name="Start" type="Button" parent="."]
+[node name="Start" type="Button" parent="." groups=["startscreen"]]
 layout_mode = 0
 offset_left = 758.0
-offset_top = 288.0
+offset_top = 336.0
 offset_right = 1047.0
-offset_bottom = 352.0
+offset_bottom = 400.0
 theme_override_fonts/font = ExtResource("2_swl5t")
 text = "START"
 
-[node name="Load" type="Button" parent="."]
+[node name="Credits" type="Button" parent="." groups=["startscreen"]]
 layout_mode = 0
 offset_left = 758.0
-offset_top = 384.0
+offset_top = 432.0
 offset_right = 1047.0
-offset_bottom = 448.0
-theme_override_fonts/font = ExtResource("2_swl5t")
-text = "Load"
-
-[node name="Credits" type="Button" parent="."]
-layout_mode = 0
-offset_left = 758.0
-offset_top = 480.0
-offset_right = 1047.0
-offset_bottom = 544.0
+offset_bottom = 496.0
 theme_override_fonts/font = ExtResource("2_swl5t")
 text = "Credits"
 
@@ -57,4 +48,40 @@ theme_override_font_sizes/bold_font_size = 0
 text = "ROLLING TIDE:
 FINDING TREASURE"
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="file1" type="Button" parent="." groups=["loadscreen"]]
+visible = false
+layout_mode = 0
+offset_left = 758.0
+offset_top = 288.0
+offset_right = 1047.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "FILE 1"
+
+[node name="file2" type="Button" parent="." groups=["loadscreen"]]
+visible = false
+layout_mode = 0
+offset_left = 758.0
+offset_top = 384.0
+offset_right = 1047.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "FILE 2"
+
+[node name="file3" type="Button" parent="." groups=["loadscreen"]]
+visible = false
+layout_mode = 0
+offset_left = 758.0
+offset_top = 480.0
+offset_right = 1047.0
+offset_bottom = 544.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "FILE 3"
+
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="file1" to="." method="_on_file_1_pressed"]
+[connection signal="pressed" from="file2" to="." method="_file_2_pressed"]
+[connection signal="pressed" from="file3" to="." method="_file_3_pressed"]
