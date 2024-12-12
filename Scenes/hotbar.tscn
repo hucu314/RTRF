@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnx24axwr4tit"]
+
+[ext_resource type="Script" path="res://hotbar.gd" id="1_2g0oy"]
+[ext_resource type="Texture2D" uid="uid://55hwfv8q1gkb" path="res://Assets/Inv/inventory-slot.png" id="2_wua10"]
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2g0oy")
+item_name = null
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_wua10")

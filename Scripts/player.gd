@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var isAttacking = false
 const SPEED = 100.0
 
+@export var inventory: Inventory
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -53,3 +54,7 @@ func dirAnimation(dir:Vector2):
 	if dir.x == 0 and dir.y == 1:
 		dirAnim = 'Down'
 	move_and_slide()
+
+func _on_hurt_box_entered(area):
+	if area.has_method("collect"):
+		area.collect(inventory)
