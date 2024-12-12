@@ -40,10 +40,14 @@ func swordAttack(direction):
 func fireGun(direction):
 	isAttacking = true
 	changeAnim('shoot',direction)
+	
 func changeAnim(movement,direction):
 	print('done')
-	player.play(str(movement)+str(direction))
-	clothes.play(str(movement)+str(direction))
+	if direction == null or direction == "none":
+		direction = "down"
+	player.play(str(movement)+str(direction).capitalize())
+	clothes.play(str(movement)+str(direction).capitalize())
+	
 func dirAnimation(dir:Vector2):
 	if dir.x == -1 and dir.y == 0:
 		dirAnim = 'Left'
