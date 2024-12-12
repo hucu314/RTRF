@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmp04bf8bvv3b"]
+
+[ext_resource type="Texture2D" uid="uid://d28kock02liqp" path="res://Assets/items/PNG/Background/Icon48.png" id="1_mm0uh"]
+
+[node name="placeholder" type="Sprite2D"]
+position = Vector2(-1, -40)
+texture = ExtResource("1_mm0uh")

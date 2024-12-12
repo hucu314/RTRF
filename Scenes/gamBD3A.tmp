@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://div1yy6yynakf"]
+[gd_scene load_steps=14 format=3 uid="uid://boykr1q8ejkox"]
 
-[ext_resource type="Script" path="res://Scenes/game.gd" id="1_5f72u"]
 [ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_7wqmt"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_a5twp"]
 [ext_resource type="Texture2D" uid="uid://c5ihirhdla3dp" path="res://Assets/World Tiles/playatileset1.png" id="1_wgdvu"]
 [ext_resource type="Texture2D" uid="uid://drtcmflejj7oy" path="res://Assets/World Tiles/playatileset2.png" id="2_p8jpd"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="3_j5gyu"]
-[ext_resource type="PackedScene" uid="uid://bwm7a3cidxoyu" path="res://Scenes/inventory_gui.tscn" id="5_1qops"]
-[ext_resource type="Script" path="res://Scenes/canvas_layer.gd" id="5_ifb78"]
+[ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
+[ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
+[ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
+[ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_usx1g"]
 texture = ExtResource("1_wgdvu")
@@ -2112,7 +2114,7 @@ sources/1 = SubResource("TileSetAtlasSource_x8c5o")
 sources/2 = SubResource("TileSetAtlasSource_fvub0")
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_5f72u")
+script = ExtResource("1_a5twp")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bxocs")
@@ -2122,22 +2124,19 @@ layer_0/tile_data = PackedInt32Array(3, 393216, 4, -262141, 393216, 4, -524286, 
 layer_1/name = "Props"
 layer_1/tile_data = PackedInt32Array(65530, 1572865, 13, -131075, 1703937, 4, -65539, 1703937, 5, -3, 1703937, 6, -65538, 1769473, 5, -2, 1769473, 6, -65537, 1835009, 5, -1, 1835009, 6, -131072, 1900545, 5, -65536, 1900545, 6, -131071, 1769473, 5, -65535, 1769473, 6, -131070, 1835009, 5, -65534, 1835009, 6, -131069, 1900545, 5, -65533, 1900545, 6, -196604, 1966081, 7, -131068, 1966081, 8, -65532, 1966081, 9, -131077, 1572865, 15, -65524, 2, 805306376, -196596, 1376257, 13, -131061, 1376257, 14, -131059, 1310721, 14, -196597, 1310721, 13, -262152, 1245185, 13, -196616, 1245185, 14, -262148, 1245185, 13, -196612, 1245185, 14, -131076, 1245185, 13, -65540, 1245185, 14, -393223, 983041, 4, -196615, 983041, 4, -524281, 983041, 4, -393211, 983041, 4, -327676, 786433, 7, -458756, 786433, 7, -65531, 1572865, 14, -65530, 1638401, 14, -458744, 1376257, 14, -131065, 1310721, 14, -65529, 1376257, 14, -131080, 1441793, 13, -8, 1441793, 13, 65532, 1310721, 13, 65533, 1376257, 13, 65534, 1376257, 14, 65531, 1769473, 13, 65529, 1769473, 13, -196602, 1769473, 13, -196601, 1900545, 13, 131088, 1310721, 13, 131089, 1376257, 13, 131087, 1376257, 14, 65551, 1310721, 13, 65552, 1376257, 13, 65553, 1310721, 14, 14, 1310721, 13, 15, 1376257, 13, 16, 1376257, 14, -589830, 1441793, 13, -393225, 1310721, 14, -720903, 1310721, 13, -720902, 1376257, 13, -655368, 1310721, 13, -655367, 1376257, 13, -655365, 1376257, 13, -851961, 1245185, 16, -786424, 1310721, 16, -786426, 1441793, 16, -786425, 1441793, 16, -655366, 1310721, 13, -327673, 1507329, 17)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_7wqmt")]
-position = Vector2(-93, 23)
+[node name="player" parent="." instance=ExtResource("1_7wqmt")]
+position = Vector2(-98, 21)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(4, 4)
+[node name="camera" parent="." instance=ExtResource("5_oigmr")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 20
-script = ExtResource("5_ifb78")
+[node name="variables" type="Node" parent="."]
+script = ExtResource("7_w2pin")
 
-[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("5_1qops")]
-offset_left = -265.0
-offset_top = -144.0
-offset_right = 248.0
-offset_bottom = 181.0
+[node name="shipPlayer" parent="." instance=ExtResource("8_q747f")]
+position = Vector2(13, 66)
 
-[connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
-[connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
+[node name="bullets" type="Node" parent="."]
+
+[node name="board" parent="." instance=ExtResource("9_ddsd2")]
+position = Vector2(-220, 93)
+scale = Vector2(1, 1)
