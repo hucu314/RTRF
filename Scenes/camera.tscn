@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1yk3xsqlchqm"]
+
+[ext_resource type="Texture2D" uid="uid://cvgoraoauhs3i" path="res://Assets/hearts.png" id="1_cbfcd"]
+[ext_resource type="Texture2D" uid="uid://c2fk06b13ut5f" path="res://Assets/items/PNG/Transperent/Icon47.png" id="2_t3af7"]
+
+[node name="camera" type="Camera2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="playerHealth" type="ProgressBar" parent="."]
+offset_left = -960.0
+offset_top = -597.0
+offset_right = -16.0
+offset_bottom = -509.0
+show_percentage = false
+
+[node name="shipHealth" type="ProgressBar" parent="."]
+offset_left = 160.0
+offset_top = -597.0
+offset_right = 1104.0
+offset_bottom = -509.0
+value = 100.0
+show_percentage = false
+
+[node name="heart" type="Sprite2D" parent="."]
+position = Vector2(-1048, -548)
+scale = Vector2(7.99999, 8)
+texture = ExtResource("1_cbfcd")
+region_enabled = true
+region_rect = Rect2(1, 2, 14, 13)
+
+[node name="wheel" type="Sprite2D" parent="."]
+position = Vector2(72, -548)
+scale = Vector2(3.73333, 3.73333)
+texture = ExtResource("2_t3af7")
+region_enabled = true
+region_rect = Rect2(1, 1, 30, 30)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://3oji1o03hyjw"]
+[gd_scene load_steps=22 format=3 uid="uid://doaaxcusvmyb0"]
 
+[ext_resource type="Script" path="res://Scripts/basic_ship.gd" id="1_ky85s"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_cbo8r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mgnm3"]
@@ -45,36 +46,50 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g58uj"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 512, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb1i4"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 480, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wwoot"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g58uj")
+}],
 "loop": true,
 "name": &"destroyed",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb1i4")
+}],
 "loop": true,
-"name": &"normal",
+"name": &"notDamaged",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_csm0e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f86vu"]
 atlas = ExtResource("2_cbo8r")
-region = Rect2(64, 336, 32, 16)
+region = Rect2(64, 384, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjymy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8dvt"]
 atlas = ExtResource("2_cbo8r")
-region = Rect2(64, 320, 32, 16)
+region = Rect2(96, 352, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_neb5y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l10rb"]
 atlas = ExtResource("2_cbo8r")
-region = Rect2(96, 320, 32, 16)
+region = Rect2(64, 352, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o76ep"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_csm0e")
+"texture": SubResource("AtlasTexture_f86vu")
 }],
 "loop": true,
 "name": &"damaged",
@@ -82,7 +97,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sjymy")
+"texture": SubResource("AtlasTexture_g8dvt")
 }],
 "loop": false,
 "name": &"idle",
@@ -90,7 +105,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_neb5y")
+"texture": SubResource("AtlasTexture_l10rb")
 }],
 "loop": true,
 "name": &"sailing",
@@ -138,16 +153,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ki6l"]
+radius = 38.625
+height = 128.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj62q"]
+bg_color = Color(0.0117647, 0.717647, 0.294118, 1)
+
 [node name="basicShip" type="CharacterBody2D"]
 rotation = 6.28319
 scale = Vector2(8, 8)
+script = ExtResource("1_ky85s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mgnm3")
 
 [node name="ship" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3jsan")
-animation = &"damaged"
+animation = &"notDamaged"
 autoplay = "notDamaged"
 
 [node name="stick" type="AnimatedSprite2D" parent="."]
@@ -156,7 +179,7 @@ animation = &"destroyed"
 
 [node name="sail" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o76ep")
-animation = &"damaged"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Right Waves" type="AnimatedSprite2D" parent="."]
@@ -171,3 +194,33 @@ sprite_frames = SubResource("SpriteFrames_b1r4j")
 animation = &"sailing"
 autoplay = "idle"
 flip_h = true
+
+[node name="interactArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactArea"]
+shape = SubResource("CapsuleShape2D_8ki6l")
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+item_count = 2
+item_0/text = "test1"
+item_1/text = "test2"
+item_1/id = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -41.5002
+offset_top = -41.9998
+offset_right = 8.49982
+offset_bottom = -14.9998
+scale = Vector2(1.84022, 0.31227)
+theme_override_styles/fill = SubResource("StyleBoxFlat_uj62q")
+show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 75.6247
+offset_top = -63.0003
+offset_right = 115.625
+offset_bottom = -23.0003
+
+[connection signal="body_entered" from="interactArea" to="." method="_on_interactArea_entered"]
+[connection signal="body_exited" from="interactArea" to="." method="_on_interactArea_exited"]

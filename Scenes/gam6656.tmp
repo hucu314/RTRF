@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://boykr1q8ejkox"]
+
+[ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_7wqmt"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_a5twp"]
+[ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
+[ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
+[ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
+[ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
+[ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_a5twp")
+
+[node name="TileMap" parent="." instance=ExtResource("7_7s3f2")]
+
+[node name="player" parent="." instance=ExtResource("1_7wqmt")]
+position = Vector2(-98, 21)
+
+[node name="camera" parent="." instance=ExtResource("5_oigmr")]
+
+[node name="variables" type="Node" parent="."]
+script = ExtResource("7_w2pin")
+
+[node name="shipPlayer" parent="." instance=ExtResource("8_q747f")]
+position = Vector2(13, 66)
+
+[node name="bullets" type="Node" parent="."]
+
+[node name="board" parent="." instance=ExtResource("9_ddsd2")]
+position = Vector2(-220, 93)
+scale = Vector2(1, 1)
+
+[connection signal="body_entered" from="board" to="." method="_on_board_body_entered"]
+[connection signal="body_exited" from="board" to="." method="_on_board_body_exited"]

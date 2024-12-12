@@ -1,0 +1,178 @@
+<<<<<<< HEAD:Scenes/basicShip.tscn
+[gd_scene load_steps=17 format=3 uid="uid://3oji1o03hyjw"]
+=======
+[gd_scene load_steps=18 format=3 uid="uid://b20lt6j60dwy4"]
+>>>>>>> b1ba0eb0d803285897630fa00489477f153de427:Scenes/bas2B65.tmp
+
+[ext_resource type="Script" path="res://Scripts/basic_ship.gd" id="1_ky85s"]
+[ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_cbo8r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mgnm3"]
+radius = 20.25
+height = 74.75
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrbss"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orr0w"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7ycs"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jsan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrbss")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orr0w")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7ycs")
+}],
+"loop": true,
+"name": &"notDamaged",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwoot"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csm0e"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 336, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjymy"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(64, 320, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neb5y"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(96, 320, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o76ep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csm0e")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjymy")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neb5y")
+}],
+"loop": true,
+"name": &"sailing",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmrmy"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(608, 488, 32, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32t0h"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(352, 610, 32, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2p36"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(384, 610, 32, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88mov"]
+atlas = ExtResource("2_cbo8r")
+region = Rect2(416, 610, 32, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b1r4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmrmy")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32t0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2p36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88mov")
+}],
+"loop": false,
+"name": &"sailing",
+"speed": 5.0
+}]
+
+[node name="basicShip" type="CharacterBody2D"]
+rotation = 6.28319
+scale = Vector2(8, 8)
+script = ExtResource("1_ky85s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_mgnm3")
+
+[node name="ship" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3jsan")
+animation = &"notDamaged"
+
+[node name="stick" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wwoot")
+animation = &"destroyed"
+
+[node name="sail" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o76ep")
+animation = &"damaged"
+autoplay = "idle"
+
+[node name="Right Waves" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0.5)
+sprite_frames = SubResource("SpriteFrames_b1r4j")
+animation = &"sailing"
+autoplay = "idle"
+
+[node name="Left Waves" type="AnimatedSprite2D" parent="."]
+position = Vector2(-16, 0.5)
+sprite_frames = SubResource("SpriteFrames_b1r4j")
+animation = &"sailing"
+autoplay = "idle"
+flip_h = true

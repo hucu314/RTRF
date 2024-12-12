@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmykmjiwyjexn"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_dq6si"]
+[ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_y4o36"]
+
+[node name="bullet" type="CharacterBody2D"]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_dq6si")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y4o36")
+region_enabled = true
+region_rect = Rect2(272, 128, 16, 16)
