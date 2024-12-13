@@ -13,7 +13,6 @@ func _ready() -> void:
 
 func _process(delta):
 	if variables.titleScreen == true:
-		print('titleScreen')
 		var start = get_tree().get_nodes_in_group("startscreen")
 		for x in start:
 			x.visible = true
@@ -21,7 +20,6 @@ func _process(delta):
 		for x in load:
 			x.visible = false
 	elif variables.loadScreen == true:
-		print('change')
 		var start = get_tree().get_nodes_in_group("startscreen")
 		for x in start:
 			x.visible = false
@@ -33,7 +31,6 @@ func _process(delta):
 func _on_start_pressed() -> void:
 	variables.loadScreen = true
 	variables.titleScreen = false
-	print('start')
 	#var start = get_tree().get_nodes_in_group("startscreen")
 	#for x in start:
 	#	x.visible = false

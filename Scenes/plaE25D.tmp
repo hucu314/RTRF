@@ -1,7 +1,8 @@
-[gd_scene load_steps=101 format=3 uid="uid://bl4qn3wqinti5"]
+[gd_scene load_steps=102 format=3 uid="uid://bl4qn3wqinti5"]
 
 [ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_31kne"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jk3co"]
+[ext_resource type="Resource" uid="uid://c88osxjqfhnci" path="res://inventory/playerInventory.tres" id="2_1808o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvfog"]
 atlas = ExtResource("1_31kne")
@@ -841,9 +842,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D"]
-scale = Vector2(0.25, 0.25)
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_jk3co")
+inventory = ExtResource("2_1808o")
 
 [node name="player" type="AnimatedSprite2D" parent="."]
 scale = Vector2(12, 12)

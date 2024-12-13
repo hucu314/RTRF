@@ -16,7 +16,7 @@ script = ExtResource("1_a5twp")
 
 [node name="TileMap" parent="." instance=ExtResource("7_7s3f2")]
 
-[node name="player" parent="." instance=ExtResource("1_7wqmt")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_7wqmt")]
 position = Vector2(-93, 23)
 
 [node name="variables" type="Node" parent="."]
@@ -31,11 +31,8 @@ script = ExtResource("7_w2pin")
 [node name="camera" parent="." instance=ExtResource("5_oigmr")]
 
 [node name="gameMenu" parent="camera" instance=ExtResource("8_olnw4")]
-visible = false
-scale = Vector2(2, 2)
 
 [node name="loading" type="ColorRect" parent="camera"]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 

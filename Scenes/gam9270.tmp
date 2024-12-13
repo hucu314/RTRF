@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://boykr1q8ejkox"]
+[gd_scene load_steps=9 format=3 uid="uid://boykr1q8ejkox"]
 
 [ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_7wqmt"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_a5twp"]
 [ext_resource type="PackedScene" path="res://Scenes/inventory_gui.tscn" id="5_1qops"]
 [ext_resource type="Script" path="res://Scenes/canvas_layer.gd" id="5_ifb78"]
-[ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
 [ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
 [ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
-[ext_resource type="PackedScene" uid="uid://do6bfa7q0dvb7" path="res://Scenes/game_menu.tscn" id="8_olnw4"]
 [ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
 [ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
 
@@ -16,8 +14,11 @@ script = ExtResource("1_a5twp")
 
 [node name="TileMap" parent="." instance=ExtResource("7_7s3f2")]
 
-[node name="player" parent="." instance=ExtResource("1_7wqmt")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_7wqmt")]
 position = Vector2(-93, 23)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(4, 4)
 
 [node name="variables" type="Node" parent="."]
 script = ExtResource("7_w2pin")
@@ -27,22 +28,6 @@ script = ExtResource("7_w2pin")
 [node name="bullets" type="Node" parent="."]
 
 [node name="board" parent="." instance=ExtResource("9_ddsd2")]
-
-[node name="camera" parent="." instance=ExtResource("5_oigmr")]
-
-[node name="gameMenu" parent="camera" instance=ExtResource("8_olnw4")]
-visible = false
-scale = Vector2(2, 2)
-
-[node name="loading" type="ColorRect" parent="camera"]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextEdit" type="TextEdit" parent="camera/loading"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -55,11 +40,5 @@ offset_top = -144.0
 offset_right = 248.0
 offset_bottom = 181.0
 
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="body_entered" from="board" to="." method="_on_board_body_entered"]
-[connection signal="body_exited" from="board" to="." method="_on_board_body_exited"]
-[connection signal="saveGame" from="camera/gameMenu" to="." method="save_game"]
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
