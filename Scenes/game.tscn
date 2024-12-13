@@ -7,26 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
 [ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
 [ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
-[ext_resource type="PackedScene" uid="uid://do6bfa7q0dvb7" path="res://Scenes/game_menu.tscn" id="8_olnw4"]
+[ext_resource type="PackedScene" uid="uid://bl422c53sui6k" path="res://Scenes/game_menu.tscn" id="8_olnw4"]
 [ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
 [ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_a5twp")
 
-[node name="TileMap" parent="." instance=ExtResource("7_7s3f2")]
+[node name="tileMap" parent="." instance=ExtResource("7_7s3f2")]
 
 [node name="player" parent="." instance=ExtResource("1_7wqmt")]
-position = Vector2(-93, 23)
-
-[node name="variables" type="Node" parent="."]
-script = ExtResource("7_w2pin")
-
-[node name="shipPlayer" parent="." instance=ExtResource("8_q747f")]
-
-[node name="bullets" type="Node" parent="."]
-
-[node name="board" parent="." instance=ExtResource("9_ddsd2")]
+position = Vector2(-136, 16)
+scale = Vector2(0.25, 0.25)
 
 [node name="camera" parent="." instance=ExtResource("5_oigmr")]
 
@@ -44,6 +36,20 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
+[node name="variables" type="Node" parent="."]
+script = ExtResource("7_w2pin")
+
+[node name="shipPlayer" parent="." instance=ExtResource("8_q747f")]
+position = Vector2(659, 90)
+
+[node name="bullets" type="Node" parent="."]
+
+[node name="board" parent="." instance=ExtResource("9_ddsd2")]
+position = Vector2(544, -64)
+
+[node name="board2" parent="." instance=ExtResource("9_ddsd2")]
+position = Vector2(1356, -1600)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 20
@@ -57,8 +63,6 @@ offset_bottom = 181.0
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="board" to="." method="_on_board_body_entered"]
-[connection signal="body_exited" from="board" to="." method="_on_board_body_exited"]
 [connection signal="saveGame" from="camera/gameMenu" to="." method="save_game"]
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

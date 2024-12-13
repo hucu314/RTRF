@@ -1,18 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://bywu51cbx6q8d"]
+[gd_scene load_steps=5 format=3 uid="uid://bywu51cbx6q8d"]
 
 [ext_resource type="Script" path="res://Scripts/board.gd" id="1_6sm1u"]
+[ext_resource type="Texture2D" uid="uid://uy0ufyuaf82g" path="res://Assets/World Tiles/Props.png" id="2_pksp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrbwr"]
-size = Vector2(271, 100)
+size = Vector2(232, 64)
 
-[node name="board" type="Area2D"]
-scale = Vector2(2, 2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhvhe"]
+size = Vector2(120, 48)
+
+[node name="board" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_6sm1u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(135.5, 50)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -4)
+texture = ExtResource("2_pksp1")
+offset = Vector2(64, 32)
+region_enabled = true
+region_rect = Rect2(640, 320, 128, 64)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 16
+visibility_layer = 2
+position = Vector2(58, 16)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_hrbwr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 271.0
-offset_bottom = 100.0
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(58, 16)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-180, 128, 220, 128, 220, 160, -180, 160)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-16, 0)
+polygon = PackedVector2Array(-32, 96, -32, -32, -16, -32, -16, 96)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-32, -32, 168, -32, 168, -16, -32, -16)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(152, -32, 152, 80, 168, 80, 168, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(60, 24)
+shape = SubResource("RectangleShape2D_dhvhe")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

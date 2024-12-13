@@ -101,6 +101,11 @@ toggle_inventory={
 2d_render/layer_2="Player"
 2d_render/layer_3="Interactions"
 2d_render/layer_9="Props"
+2d_physics/layer_1="Water"
+2d_physics/layer_2="Ground"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Environment"
+2d_physics/layer_5="Props"
 
 [rendering]
 
