@@ -19,6 +19,8 @@ func _ready():
 	resources = 10
 
 func _physics_process(delta: float) -> void:
+	print(player.global_position)
+	#print(global_position)
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
 	#mouse settings for weapon

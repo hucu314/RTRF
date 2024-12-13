@@ -35,8 +35,17 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed('switch'):
 			if variables.sailing == false:
 				variables.sailing = true
+				player.visible = false
 			else:
 				variables.sailing = false
+				if variables.board == "board":
+					player.visible = true
+					player.global_position = Vector2(600,-68)
+				elif variables.board == "board2":
+					player.visible = true
+					player.global_position = Vector2(1416, -1584)
+					
+					pass
 				
 	#player/ship camera tracker
 	trackPlayer()
@@ -51,22 +60,6 @@ func trackPlayer():
 	elif variables.sailing == false:
 		camera.position = player.position
 
-func _on_board_body_entered(body):
-	print(body)
-	if body.name == 'player':
-		print('can board')
-		variables.canBoard = true
-	if body.name == 'shipPlayer':
-		variables.canLeave = true
-	pass # Replace with function body.
-
-
-func _on_board_body_exited(body):
-	if body.name == 'player':
-		variables.canBoard = false
-	if body.name == 'shipPlayer':
-		variables.canLeave = false
-	pass # Replace with function body.
 	
 	
 func updateBoatHealth():
