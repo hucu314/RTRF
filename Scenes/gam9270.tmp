@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://boykr1q8ejkox"]
+
+[ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_7wqmt"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_a5twp"]
+[ext_resource type="PackedScene" path="res://Scenes/inventory_gui.tscn" id="5_1qops"]
+[ext_resource type="Script" path="res://Scenes/canvas_layer.gd" id="5_ifb78"]
+[ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
+[ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
+[ext_resource type="PackedScene" uid="uid://doaaxcusvmyb0" path="res://Scenes/Ships/Sloop.tscn" id="8_q747f"]
+[ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_a5twp")
+
+[node name="TileMap" parent="." instance=ExtResource("7_7s3f2")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_7wqmt")]
+position = Vector2(-93, 23)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(4, 4)
+
+[node name="variables" type="Node" parent="."]
+script = ExtResource("7_w2pin")
+
+[node name="shipPlayer" parent="." instance=ExtResource("8_q747f")]
+
+[node name="bullets" type="Node" parent="."]
+
+[node name="board" parent="." instance=ExtResource("9_ddsd2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 20
+script = ExtResource("5_ifb78")
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("5_1qops")]
+offset_left = -265.0
+offset_top = -144.0
+offset_right = 248.0
+offset_bottom = 181.0
+
+[connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
+[connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

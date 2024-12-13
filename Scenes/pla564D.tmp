@@ -1,7 +1,11 @@
-[gd_scene load_steps=101 format=3 uid="uid://bl4qn3wqinti5"]
+[gd_scene load_steps=105 format=3 uid="uid://bl4qn3wqinti5"]
 
 [ext_resource type="Texture2D" uid="uid://dhsqc01yo5d6b" path="res://Assets/Characters/Foozle_2DS0025_Scallywag_Pirates/Pirate White Sprite Sheet/Pirates White Sprite Sheet.png" id="1_31kne"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jk3co"]
+[ext_resource type="Resource" uid="uid://mcnjwfoy0u4l" path="res://inventory/playerinv.tres" id="2_mejfh"]
+[ext_resource type="Resource" uid="uid://brgmd4jdbhsv6" path="res://inventory/currentitem.tres" id="3_0rm6h"]
+[ext_resource type="PackedScene" uid="uid://dgjkwoinp043v" path="res://Scenes/inv_ui.tscn" id="4_ktwd3"]
+[ext_resource type="PackedScene" uid="uid://5o7vgwt5nmnu" path="res://Scenes/carried_item.tscn" id="5_wb8fs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvfog"]
 atlas = ExtResource("1_31kne")
@@ -841,19 +845,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mffij"]
-radius = 3.33333
-
-[node name="player" type="CharacterBody2D"]
-scale = Vector2(3, 3)
-collision_layer = 4
-collision_mask = 9
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_jk3co")
+inv = ExtResource("2_mejfh")
+item = ExtResource("3_0rm6h")
 
 [node name="player" type="AnimatedSprite2D" parent="."]
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_yb2dw")
-animation = &"shootDown"
+animation = &"shootUp"
 autoplay = "idleRight"
 
 [node name="clothes" type="AnimatedSprite2D" parent="."]
@@ -862,7 +863,14 @@ sprite_frames = SubResource("SpriteFrames_qddxp")
 animation = &"shootUp"
 autoplay = "idleRight"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Inv_UI" parent="." instance=ExtResource("4_ktwd3")]
+offset_left = -430.0
+offset_top = -770.0
+offset_right = 440.0
+offset_bottom = -160.0
 
-[connection signal="animation_finished" from="player" to="." method="_on_player_animation_finished"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_hurt_box_entered"]
+[node name="carried_item" parent="." instance=ExtResource("5_wb8fs")]
+offset_left = 1230.0
+offset_top = 590.0
+offset_right = 1425.0
+offset_bottom = 779.0

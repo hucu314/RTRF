@@ -1,4 +1,8 @@
+<<<<<<< HEAD:Scenes/basicShip.tscn
+[gd_scene load_steps=17 format=3 uid="uid://3oji1o03hyjw"]
+=======
 [gd_scene load_steps=18 format=3 uid="uid://b20lt6j60dwy4"]
+>>>>>>> b1ba0eb0d803285897630fa00489477f153de427:Scenes/bas2B65.tmp
 
 [ext_resource type="Script" path="res://Scripts/basic_ship.gd" id="1_ky85s"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="2_cbo8r"]
