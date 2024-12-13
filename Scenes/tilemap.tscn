@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://be82sp565ry3l"]
+[gd_scene load_steps=14 format=3 uid="uid://be82sp565ry3l"]
 
 [ext_resource type="Texture2D" uid="uid://drtcmflejj7oy" path="res://Assets/World Tiles/playatileset2.png" id="2_b5n1h"]
 [ext_resource type="Texture2D" uid="uid://d35sgkihcydoe" path="res://Assets/Ships/Foozle_2DT0013_Scallywag_Ships/Ships tiles.png" id="3_sy07d"]
 [ext_resource type="Texture2D" uid="uid://ug5g6hbbgt8t" path="res://Assets/World Tiles/SandTiles.png" id="4_br50u"]
 [ext_resource type="Texture2D" uid="uid://dcllytbdc17ux" path="res://Assets/World Tiles/MasterSimple.png" id="5_04vxs"]
+[ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="5_kwsjp"]
 [ext_resource type="Texture2D" uid="uid://uy0ufyuaf82g" path="res://Assets/World Tiles/Props.png" id="5_s77tr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ambh1"]
@@ -2080,8 +2081,13 @@ texture = ExtResource("5_04vxs")
 9:5/0/probability = 0.0
 10:5/0 = 0
 10:5/0/probability = 0.0
+10:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1.125, 8, 0.875, 8, 8, -8, 8)
+10:5/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.875, -8, -7)
 11:5/0 = 0
 11:5/0/probability = 0.0
+11:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1.125, 5.99658, 0.906303, 8, 0.875, 8, 8, -8, 8)
+11:5/0/physics_layer_0/polygon_1/points = PackedVector2Array(5.875, -8, 8, -8, 8, 0.625, 6, 2)
+11:5/0/physics_layer_0/polygon_2/points = PackedVector2Array(-8, -8, 5.75, -8, 6.75, -7, -8, -7)
 12:5/0 = 0
 12:5/0/probability = 0.0
 0:6/0 = 0
@@ -2183,6 +2189,9 @@ texture = ExtResource("5_04vxs")
 4:1/0/terrains_peering_bit/top_left_corner = 0
 4:1/0/terrains_peering_bit/top_side = 0
 4:1/0/terrains_peering_bit/top_right_corner = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rn6nj"]
+scenes/2/scene = ExtResource("5_kwsjp")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ycs7"]
 texture = ExtResource("5_s77tr")
@@ -3987,6 +3996,7 @@ sources/4 = SubResource("TileSetAtlasSource_m3yro")
 sources/5 = SubResource("TileSetAtlasSource_xw025")
 sources/3 = SubResource("TileSetAtlasSource_aest1")
 sources/8 = SubResource("TileSetAtlasSource_6ycs7")
+sources/6 = SubResource("TileSetScenesCollectionSource_rn6nj")
 
 [node name="tileMap" type="TileMap"]
 scale = Vector2(2, 2)
