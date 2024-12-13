@@ -16,7 +16,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#updates health bar for boat
 	updateBoatHealth()
-	print(variables.canBoard)
 	#Switch Weapon
 	if Input.is_action_just_pressed('switchWeapon'):
 		if player.weapon == 'sword':
@@ -53,7 +52,9 @@ func trackPlayer():
 		camera.position = player.position
 
 func _on_board_body_entered(body):
+	print(body)
 	if body.name == 'player':
+		print('can board')
 		variables.canBoard = true
 	if body.name == 'shipPlayer':
 		variables.canLeave = true

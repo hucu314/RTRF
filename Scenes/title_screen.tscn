@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://63r41utn6n3j"]
+
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_1a012"]
+[ext_resource type="Texture2D" path="res://Assets/titlescreen.png" id="1_io8hx"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/8bit16.ttf" id="2_swl5t"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1a012")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 2323.0
+offset_bottom = 1544.0
+texture = ExtResource("1_io8hx")
+
+[node name="Start" type="Button" parent="." groups=["startscreen"]]
+layout_mode = 0
+offset_left = 758.0
+offset_top = 336.0
+offset_right = 1047.0
+offset_bottom = 400.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "START"
+
+[node name="Credits" type="Button" parent="." groups=["startscreen"]]
+layout_mode = 0
+offset_left = 758.0
+offset_top = 432.0
+offset_right = 1047.0
+offset_bottom = 496.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "Credits"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 51.0
+offset_right = 1056.0
+offset_bottom = 314.0
+theme_override_constants/line_separation = 20
+theme_override_fonts/normal_font = ExtResource("2_swl5t")
+theme_override_font_sizes/normal_font_size = 68
+theme_override_font_sizes/bold_font_size = 0
+text = "ROLLING TIDE:
+FINDING TREASURE"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="file1" type="Button" parent="." groups=["loadscreen"]]
+visible = false
+layout_mode = 0
+offset_left = 758.0
+offset_top = 288.0
+offset_right = 1047.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "FILE 1"
+
+[node name="file2" type="Button" parent="." groups=["loadscreen"]]
+visible = false
+layout_mode = 0
+offset_left = 758.0
+offset_top = 384.0
+offset_right = 1047.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "FILE 2"
+
+[node name="file3" type="Button" parent="." groups=["loadscreen"]]
+visible = false
+layout_mode = 0
+offset_left = 758.0
+offset_top = 480.0
+offset_right = 1047.0
+offset_bottom = 544.0
+theme_override_fonts/font = ExtResource("2_swl5t")
+text = "FILE 3"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="file1" to="." method="_on_file_1_pressed"]
+[connection signal="pressed" from="file2" to="." method="_file_2_pressed"]
+[connection signal="pressed" from="file3" to="." method="_file_3_pressed"]

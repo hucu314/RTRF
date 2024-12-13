@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl422c53sui6k"]
+
+[ext_resource type="FontFile" path="res://Assets/Fonts/8bit16.ttf" id="1_o8sg3"]
+[ext_resource type="Script" path="res://Scripts/game_menu.gd" id="1_qmbaa"]
+
+[node name="gameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+script = ExtResource("1_qmbaa")
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 431.4
+offset_top = 308.0
+offset_right = 720.4
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("1_o8sg3")
+text = "Continue"
+
+[node name="Load" type="Button" parent="."]
+layout_mode = 0
+offset_left = 431.4
+offset_top = 404.0
+offset_right = 720.4
+offset_bottom = 468.0
+theme_override_fonts/font = ExtResource("1_o8sg3")
+text = "LOAD"
+
+[node name="SaveAndLeave" type="Button" parent="."]
+layout_mode = 0
+offset_left = 431.4
+offset_top = 500.0
+offset_right = 720.4
+offset_bottom = 564.0
+theme_override_fonts/font = ExtResource("1_o8sg3")
+text = "Save & Quit"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="SaveAndLeave" to="." method="_on_save_and_leave_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
