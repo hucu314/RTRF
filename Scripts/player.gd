@@ -20,7 +20,6 @@ func _ready():
 	resources = 10
 
 func _physics_process(delta: float) -> void:
-	print(player.global_position)
 	#print(global_position)
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
@@ -37,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		var ydirection := Input.get_axis("up","down")
 		
 		var direction = Vector2(xdirection,ydirection)
-		dirAnimation(direction)
+		_dirAnimation(direction)
 		if isAttacking == false:
 			if direction:
 				velocity.x = direction.x * SPEED
@@ -66,7 +65,7 @@ func fireGun(direction):
 	var mousePosition = get_local_mouse_position()
 	if mousePosition.x >12.5 or mousePosition.x < -12.5 or mousePosition.y > 12.5 or mousePosition.y<12.5:
 		isAttacking = true
-		gunDir(mousePosition)
+		_gunDir(mousePosition)
 		var bullet = ammo.instantiate()
 		bullet.global_position = bulletLocation
 		bullet.target = get_global_mouse_position()
@@ -74,13 +73,12 @@ func fireGun(direction):
 		changeAnim("shoot","dirAnim")
 	
 func changeAnim(movement,direction):
-	print('done')
 	if direction == null or direction == "none":
 		direction = "down"
 	player.play(str(movement)+str(direction).capitalize())
 	clothes.play(str(movement)+str(direction).capitalize())
 	
-func dirAnimation(dir:Vector2):
+func _dirAnimation(dir:Vector2):
 	if dir.x < 0:
 		dirAnim = 'Left'
 	elif dir.x > 0:
@@ -90,7 +88,7 @@ func dirAnimation(dir:Vector2):
 	elif dir.y > 0:
 		dirAnim = 'Down'
 		
-func gunDir(dir:Vector2):
+func _gunDir(dir:Vector2):
 	if dir.x < -31.25 and dir.y < 62.5 and dir.y > -62.5:
 		dirAnim = 'Left'
 		bulletLocation = global_position + Vector2(-9.625,2.625)

@@ -10,7 +10,7 @@ size = Vector2(232, 64)
 size = Vector2(120, 48)
 
 [node name="board" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_6sm1u")
 

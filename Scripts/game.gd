@@ -84,7 +84,6 @@ func _process(delta: float) -> void:
 	Input.set_custom_mouse_cursor(shipCrosshair,Input.CURSOR_ARROW,Vector2(28,28))
 	if Input.is_action_just_pressed('exit'):
 		game_menu.visible = true
-		player.paused = true
 			
 		
 	#updates health bar for boat

@@ -842,13 +842,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lecs6"]
-radius = 32.6667
+radius = 32.6666
 height = 65.3333
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(3, 3)
 collision_layer = 4
-collision_mask = 9
+collision_mask = 41
 script = ExtResource("1_jk3co")
 
 [node name="player" type="AnimatedSprite2D" parent="."]

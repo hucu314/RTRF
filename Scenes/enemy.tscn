@@ -1,5 +1,6 @@
-[gd_scene load_steps=54 format=3 uid="uid://r6d771mhfue"]
+[gd_scene load_steps=55 format=3 uid="uid://r6d771mhfue"]
 
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_2gela"]
 [ext_resource type="Texture2D" uid="uid://bry2bvfmnwslv" path="res://Assets/Characters/_02/05-Die/__Bat02_Die_000.png" id="1_vlpg4"]
 [ext_resource type="Texture2D" uid="uid://dp3ixnmvdlc8u" path="res://Assets/Characters/_02/05-Die/__Bat02_Die_001.png" id="2_5hqtf"]
 [ext_resource type="Texture2D" uid="uid://ca3wu5qhwr6ji" path="res://Assets/Characters/_02/05-Die/__Bat02_Die_002.png" id="3_6aufi"]
@@ -226,17 +227,18 @@ radius = 1111.22
 radius = 182.784
 
 [node name="enemy" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 17
+script = ExtResource("1_2gela")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h84ho")
-animation = &"idle"
-frame = 2
-frame_progress = 0.347514
+animation = &"fly"
 offset = Vector2(0, -100)
 
 [node name="detection_area" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 32
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(0, -48)
@@ -245,3 +247,6 @@ shape = SubResource("CircleShape2D_0inoi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -123)
 shape = SubResource("CircleShape2D_mesc1")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
