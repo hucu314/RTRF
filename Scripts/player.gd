@@ -24,7 +24,6 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	playerHealth = (_health/_totalHealth)*100
-	print(_health)
 	#print(global_position)
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
@@ -114,3 +113,10 @@ func _on_hurt_box_entered(area):
 
 func takeDamage(damage):
 	_health -= damage
+
+
+func hitbox(body):
+	print(body)
+	if body is Enemy:
+		takeDamage(body.attack)
+	pass # Replace with function body.

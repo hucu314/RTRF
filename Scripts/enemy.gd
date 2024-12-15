@@ -1,10 +1,13 @@
 extends CharacterBody2D
+class_name Enemy
+
 @onready var animation = $AnimatedSprite2D
 var play = Player.new()
 var speed = 50
 var player_chase = false
 var player = null
 var resources = 30
+var attack = 5
 
 func _physics_process(delta):
 	if player_chase:
@@ -19,13 +22,10 @@ func _physics_process(delta):
 
 
 func _on_detection_area_body_entered(body):
-	print(body)
 	if body is Player:
-		print('chasing')
 		player = body
 		player_chase = true
 		animation.play('fly')
-		player.takeDamage(5)
 		
 			
 	
