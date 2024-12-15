@@ -6,7 +6,10 @@ class_name Player
 @onready var last_position: Vector2
 @onready var dirAnim = 'none'
 @onready var isAttacking = false
-const SPEED = 150.0
+const _SPEED = 150.0
+@onready var _health: float = 100
+@onready var _totalHealth: float = 100
+@onready var playerHealth = (_health/_totalHealth)*100
 @onready var resources
 @onready var weapon = 'sword'
 const gunCrosshair = preload('res://Assets/ELR_Crosshairs/gunCrosshair.png')
@@ -20,6 +23,8 @@ func _ready():
 	resources = 10
 
 func _physics_process(delta: float) -> void:
+	playerHealth = (_health/_totalHealth)*100
+	print(_health)
 	#print(global_position)
 	# Add the gravity.
 #	dirAnimation(global_position-last_position)
@@ -39,12 +44,12 @@ func _physics_process(delta: float) -> void:
 		_dirAnimation(direction)
 		if isAttacking == false:
 			if direction:
-				velocity.x = direction.x * SPEED
-				velocity.y = direction.y * SPEED
+				velocity.x = direction.x * _SPEED
+				velocity.y = direction.y * _SPEED
 				changeAnim('move',dirAnim)
 			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
-				velocity.y = move_toward(velocity.y, 0, SPEED)
+				velocity.x = move_toward(velocity.x, 0, _SPEED)
+				velocity.y = move_toward(velocity.y, 0, _SPEED)
 				changeAnim('idle',dirAnim)
 		if Input.is_action_just_pressed('attack') and not variables.inMenu:
 			if weapon == "gun":
@@ -106,3 +111,6 @@ func _gunDir(dir:Vector2):
 func _on_hurt_box_entered(area):
 	if area.has_method("collect"):
 		area.collect(inventory)
+
+func takeDamage(damage):
+	_health -= damage

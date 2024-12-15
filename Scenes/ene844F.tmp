@@ -231,7 +231,7 @@ script = ExtResource("1_2gela")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h84ho")
 animation = &"idle"
-frame_progress = 0.956964
+frame_progress = 0.0718104
 offset = Vector2(0, -100)
 
 [node name="detection_area" type="Area2D" parent="."]

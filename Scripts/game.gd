@@ -10,7 +10,7 @@ extends Node2D
 @onready var game_menu = $camera/gameMenu
 const shipCrosshair = preload("res://Assets/ELR_Crosshairs/shipCrosshair.png")
 @onready var loading = $camera/loading
-
+var play = Player.new()
 var config1 = ConfigFile.new()
 var config2 = ConfigFile.new()
 var config3 = ConfigFile.new()
@@ -23,7 +23,6 @@ func _ready() -> void:
 
 
 func load_game():
-	print('loading')
 	if variables.saveNum == 1:
 		var err = config1.load("res://savegame1.cfg")
 		if err == OK:
@@ -46,11 +45,9 @@ func load_game():
 			ship.position.x = config3.get_value("ship","x")
 			ship.position.y = config3.get_value("ship","y")
 	timer.start(400)
-	print('works')
 	pass
 	
 func save_game():
-	print('saving')
 	if variables.saveNum == 1:
 		config1.set_value('player','x',round(player.position.x))
 		config1.set_value('player','y',round(player.position.y))
@@ -70,10 +67,10 @@ func save_game():
 		config3.set_value('ship','y',round(ship.position.y))
 		config3.save('res://savegame3.cfg')
 		
-	print('works')
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	play.resources
 	if variables.load == true:
 		variables.load = false
 		load_game()
@@ -88,6 +85,7 @@ func _process(delta: float) -> void:
 		
 	#updates health bar for boat
 	updateBoatHealth()
+	updatePlayerHealth()
 	#Switch Weapon
 	if Input.is_action_just_pressed('switchWeapon'):
 		if player.weapon == 'sword':
@@ -142,6 +140,15 @@ func updateBoatHealth():
 		shipHealthColor.set_bg_color(Color("f8ff1d"))
 	elif ship.durability>0:
 		shipHealthColor.set_bg_color(Color("FF0000"))
+		
+func updatePlayerHealth():
+	playerHealthBar.value = player.playerHealth
+	if player.playerHealth>60:
+		playerHealthColor.set_bg_color(Color('3fff25'))
+	elif player.playerHealth>30:
+		playerHealthColor.set_bg_color(Color("f8ff1d"))
+	elif player.playerHealth>0:
+		playerHealthColor.set_bg_color(Color("FF0000"))
 
 
 func _on_timer_timeout():

@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			changeAnim('idle',durability)
 		if Input.is_action_just_pressed('attack') and not variables.inMenu:
-			print('fire')
 			fireCannon(get_local_mouse_position())
 		move_and_slide()
 		
@@ -104,7 +103,6 @@ func fireCannon(target):
 	var mousePosition = get_local_mouse_position()
 	#if mousePosition.x > 100 or mousePosition.x < -100 or mousePosition.y > 100 or mousePosition.y < -100:
 	isAttacking = true
-	print(target)
 	cannonDir(mousePosition)
 	var bullet = ammo.instantiate()
 	bullet.global_position = bulletLocation
