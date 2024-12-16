@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://boykr1q8ejkox"]
+[gd_scene load_steps=17 format=3 uid="uid://boykr1q8ejkox"]
 
 [ext_resource type="PackedScene" uid="uid://bl4qn3wqinti5" path="res://Scenes/player.tscn" id="1_7wqmt"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_a5twp"]
 [ext_resource type="PackedScene" uid="uid://bwm7a3cidxoyu" path="res://Scenes/inventory_gui.tscn" id="5_1qops"]
 [ext_resource type="Script" path="res://Scenes/canvas_layer.gd" id="5_ifb78"]
 [ext_resource type="PackedScene" uid="uid://c1yk3xsqlchqm" path="res://Scenes/camera.tscn" id="5_oigmr"]
+[ext_resource type="FontFile" uid="uid://cxwbp5fyrmp7p" path="res://Assets/Fonts/8bit16.ttf" id="6_tt1sg"]
 [ext_resource type="PackedScene" uid="uid://be82sp565ry3l" path="res://Scenes/tilemap.tscn" id="7_7s3f2"]
 [ext_resource type="Script" path="res://Scripts/game_variables.gd" id="7_w2pin"]
 [ext_resource type="PackedScene" uid="uid://do6bfa7q0dvb7" path="res://Scenes/game_menu.tscn" id="8_olnw4"]
@@ -12,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bywu51cbx6q8d" path="res://Scenes/board.tscn" id="9_ddsd2"]
 [ext_resource type="Script" path="res://Scripts/sub_viewport.gd" id="11_camfy"]
 [ext_resource type="PackedScene" uid="uid://r6d771mhfue" path="res://Scenes/enemy.tscn" id="12_hh5vb"]
+[ext_resource type="PackedScene" uid="uid://bqlwtyp4b2gwq" path="res://Scenes/npc.tscn" id="13_34ipj"]
+[ext_resource type="PackedScene" uid="uid://bctbo1spusl0o" path="res://Scenes/board_npc.tscn" id="14_sppgi"]
+[ext_resource type="PackedScene" uid="uid://bxfbhsoy5e5bh" path="res://Scenes/ship_npc.tscn" id="15_mgij6"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_a5twp")
@@ -23,10 +27,11 @@ layer_2/tile_data = PackedInt32Array(3, 4, 1, -262141, 4, 1, -458749, 4, 1, -393
 
 [node name="player" parent="." instance=ExtResource("1_7wqmt")]
 z_index = 1
-position = Vector2(276, -123)
+position = Vector2(1584, -1552)
 scale = Vector2(0.25, 0.25)
 
 [node name="camera" parent="." instance=ExtResource("5_oigmr")]
+z_index = 3
 
 [node name="gameMenu" parent="camera" instance=ExtResource("8_olnw4")]
 visible = false
@@ -41,6 +46,25 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="PopupMenu" type="PopupMenu" parent="camera"]
+auto_translate_mode = 1
+title = "Upgrade Ship"
+position = Vector2i(504, 400)
+size = Vector2i(245, 125)
+theme_override_fonts/font = ExtResource("6_tt1sg")
+theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_separator_size = 200
+item_count = 5
+item_0/text = "SLOOP"
+item_1/text = "BRIGANTINE"
+item_1/id = 1
+item_2/text = "FRIGATE"
+item_2/id = 2
+item_3/text = "GALLEON"
+item_3/id = 3
+item_4/text = "MAN-OF-WAR"
+item_4/id = 4
 
 [node name="variables" type="Node" parent="."]
 script = ExtResource("7_w2pin")
@@ -98,10 +122,28 @@ color = Color(0, 0, 0, 1)
 [node name="Timer" type="Timer" parent="."]
 
 [node name="enemy" parent="." instance=ExtResource("12_hh5vb")]
-position = Vector2(287, -165)
-scale = Vector2(0.1, 0.1)
+position = Vector2(272, -128)
+
+[node name="NPC" parent="." instance=ExtResource("13_34ipj")]
+position = Vector2(-288, 0)
+
+[node name="enemy2" parent="." instance=ExtResource("12_hh5vb")]
+position = Vector2(192, -192)
+
+[node name="enemy3" parent="." instance=ExtResource("12_hh5vb")]
+position = Vector2(176, -112)
+
+[node name="enemy4" parent="." instance=ExtResource("12_hh5vb")]
+position = Vector2(320, -224)
+
+[node name="boardNPC" parent="." instance=ExtResource("14_sppgi")]
+position = Vector2(528, -80)
+
+[node name="shipNPC" parent="." instance=ExtResource("15_mgij6")]
+position = Vector2(1680, -1520)
 
 [connection signal="saveGame" from="camera/gameMenu" to="." method="save_game"]
+[connection signal="id_pressed" from="camera/PopupMenu" to="." method="_on_popup_menu_id_pressed"]
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
