@@ -9,3 +9,7 @@ var load = false
 var saveNum = 0
 var loadScreen = false
 var titleScreen = true
+var talkable = false
+var talk = false
+var upgradeShip = false
+var money = 0

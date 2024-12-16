@@ -18,6 +18,8 @@ var bulletLocation: Vector2
 @onready var bullets: Node = $"../bullets"
 @onready var testBlocks: Node = $"../testBlocks"
 @export var inventory: Inventory
+var enemy = null
+@onready var attackbox: Area2D = $attackbox
 
 func _ready():
 	resources = 10
@@ -34,6 +36,10 @@ func _physics_process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
+	if Input.is_action_just_pressed('talk'):
+		print('talk')
+		talk()
+	
 	if variables.sailing == false:
 		
 		var xdirection := Input.get_axis("left", "right")
@@ -41,19 +47,22 @@ func _physics_process(delta: float) -> void:
 		
 		var direction = Vector2(xdirection,ydirection)
 		_dirAnimation(direction)
-		if isAttacking == false:
-			if direction:
-				velocity.x = direction.x * _SPEED
-				velocity.y = direction.y * _SPEED
+		#if isAttacking == false:
+		if direction:
+			velocity.x = direction.x * _SPEED
+			velocity.y = direction.y * _SPEED
+			if not isAttacking:
 				changeAnim('move',dirAnim)
-			else:
-				velocity.x = move_toward(velocity.x, 0, _SPEED)
-				velocity.y = move_toward(velocity.y, 0, _SPEED)
+		else:
+			velocity.x = move_toward(velocity.x, 0, _SPEED)
+			velocity.y = move_toward(velocity.y, 0, _SPEED)
+			if not isAttacking:
 				changeAnim('idle',dirAnim)
 		if Input.is_action_just_pressed('attack') and not variables.inMenu:
 			if weapon == "gun":
 				fireGun(get_local_mouse_position())
 			elif weapon == 'sword':
+				attack()
 				swordAttack(dirAnim)
 		move_and_slide()
 	if player.is_playing() == false:
@@ -85,12 +94,16 @@ func changeAnim(movement,direction):
 func _dirAnimation(dir:Vector2):
 	if dir.x < 0:
 		dirAnim = 'Left'
+		attackbox.rotation_degrees = 180
 	elif dir.x > 0:
 		dirAnim = 'Right'
+		attackbox.rotation_degrees = 0
 	elif dir.y < 0:
 		dirAnim = 'Up'
+		attackbox.rotation_degrees = 270
 	elif dir.y > 0:
 		dirAnim = 'Down'
+		attackbox.rotation_degrees = 90
 		
 func _gunDir(dir:Vector2):
 	if dir.x < -31.25 and dir.y < 62.5 and dir.y > -62.5:
@@ -116,7 +129,31 @@ func takeDamage(damage):
 
 
 func hitbox(body):
-	print(body)
 	if body is Enemy:
 		takeDamage(body.attack)
 	pass # Replace with function body.
+
+func attack():
+	if enemy is Enemy:
+		if enemy:
+
+			enemy.health -= 10
+
+
+
+
+func attackboxexit(body: Node2D) -> void:
+	if body is Enemy:
+		enemy = null
+	pass # Replace with function body.
+
+
+func attackboxenter(body: Node2D) -> void:
+	if body is Enemy:
+		enemy = body
+	pass # Replace with function body.
+	
+func talk():
+	print('talk')
+	if variables.talkable == true:
+		variables.talk = true

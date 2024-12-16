@@ -227,6 +227,7 @@ radius = 1907.44
 radius = 109.0
 
 [node name="enemy" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
 collision_layer = 32
 collision_mask = 21
 script = ExtResource("1_2gela")
@@ -248,6 +249,7 @@ shape = SubResource("CircleShape2D_0inoi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-11, -116)
 shape = SubResource("CircleShape2D_2qmy2")
+one_way_collision_margin = 0.0
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

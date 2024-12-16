@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl6clrw6dhpce"]
+
+[ext_resource type="FontFile" uid="uid://cxwbp5fyrmp7p" path="res://Assets/Fonts/8bit16.ttf" id="1_cokvc"]
+
+[node name="shipUpgrade" type="Node"]
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+auto_translate_mode = 1
+title = "Upgrade Ship"
+position = Vector2i(504, 400)
+size = Vector2i(245, 125)
+visible = true
+theme_override_fonts/font = ExtResource("1_cokvc")
+theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_separator_size = 200
+item_count = 5
+item_0/text = "SLOOP"
+item_1/text = "BRIGANTINE"
+item_1/id = 1
+item_2/text = "FRIGATE"
+item_2/id = 2
+item_3/text = "GALLEON"
+item_3/id = 3
+item_4/text = "MAN-OF-WAR"
+item_4/id = 4

@@ -8,6 +8,7 @@ var player_chase = false
 var player = null
 var resources = 30
 var attack = 5
+var health = 20
 
 func _physics_process(delta):
 	if player_chase:
@@ -18,6 +19,10 @@ func _physics_process(delta):
 			animation.flip_h = true
 	else:
 		animation.play('idle')
+		
+	if health <= 0:
+		queue_free()
+		variables.money += 5
 
 
 

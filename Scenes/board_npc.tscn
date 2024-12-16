@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://bctbo1spusl0o"]
+
+[ext_resource type="Texture2D" uid="uid://dlbdwluhhtj3h" path="res://Assets/boardNPC/idle_0.png" id="1_cwlrk"]
+[ext_resource type="Script" path="res://Scripts/board_npc.gd" id="1_pww3c"]
+[ext_resource type="Texture2D" uid="uid://bxkoemirbbi5w" path="res://Assets/boardNPC/idle_1.png" id="2_vh3qq"]
+[ext_resource type="Texture2D" uid="uid://bsrhir5it0pc2" path="res://Assets/boardNPC/idle_2.png" id="3_peca7"]
+[ext_resource type="Texture2D" uid="uid://crq7yubrossea" path="res://Assets/boardNPC/idle_3.png" id="4_ljtc8"]
+[ext_resource type="FontFile" uid="uid://cxwbp5fyrmp7p" path="res://Assets/Fonts/8bit16.ttf" id="5_2yake"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnw6s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cwlrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vh3qq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_peca7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ljtc8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0bn5b"]
+radius = 48.0
+height = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tese1"]
+radius = 240.0
+
+[node name="boardNPC" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("1_pww3c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_qnw6s")
+animation = &"idle"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0bn5b")
+
+[node name="dialogue" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dialogue"]
+shape = SubResource("CircleShape2D_tese1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 4
+offset_left = -608.0
+offset_top = -576.0
+offset_right = -304.0
+offset_bottom = -476.0
+scale = Vector2(4, 4)
+color = Color(0.0431373, 0.0431373, 0.0431373, 0.6)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 288.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("5_2yake")
+text = "To Enter the Boat,
+stand on the dock and press f to enter the
+boat. to exit just sail next to the boat and click f again."
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[connection signal="body_entered" from="dialogue" to="." method="_on_dialogue_body_entered"]
+[connection signal="body_exited" from="dialogue" to="." method="_on_dialogue_body_exited"]

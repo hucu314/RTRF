@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxfbhsoy5e5bh"]
+
+[ext_resource type="Texture2D" uid="uid://14noya0qnfv" path="res://Assets/starter npc/idle_0.png" id="1_b58sq"]
+[ext_resource type="Script" path="res://Scripts/ship_npc.gd" id="1_nabfw"]
+[ext_resource type="Texture2D" uid="uid://ch7g20f23i3y7" path="res://Assets/starter npc/idle_1.png" id="2_3cuv6"]
+[ext_resource type="Texture2D" uid="uid://devdc5vbsh1r8" path="res://Assets/starter npc/idle_2.png" id="3_7kh0e"]
+[ext_resource type="Texture2D" uid="uid://k2fokkdqwp1y" path="res://Assets/starter npc/idle_3.png" id="4_5twhm"]
+[ext_resource type="FontFile" uid="uid://cxwbp5fyrmp7p" path="res://Assets/Fonts/8bit16.ttf" id="5_rsnau"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xbnhi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b58sq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3cuv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7kh0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5twhm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vl6g"]
+radius = 48.0
+height = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wg3m2"]
+radius = 240.0
+
+[node name="shipNPC" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_nabfw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.462745, 1, 1)
+position = Vector2(0, -32)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_xbnhi")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_1vl6g")
+
+[node name="dialogue" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dialogue"]
+shape = SubResource("CircleShape2D_wg3m2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 4
+offset_left = -608.0
+offset_top = -880.0
+offset_right = -304.0
+offset_bottom = -704.0
+scale = Vector2(4, 4)
+color = Color(0.0431373, 0.0431373, 0.0431373, 0.6)
+
+[node name="Label" type="Label" parent="ColorRect"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 288.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("5_rsnau")
+text = "Ah, so the winds have
+brought new blood to
+our little corner of
+the world. The name’s
+Captain Bartholomew
+Torrel—though most
+folk call me 'Red.' Can’t say I care much for
+titles, but a ship don’t sail itself, eh."
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[connection signal="body_entered" from="dialogue" to="." method="_on_dialogue_body_entered"]
+[connection signal="body_exited" from="dialogue" to="." method="_on_dialogue_body_exited"]

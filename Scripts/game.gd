@@ -14,7 +14,12 @@ var play = Player.new()
 var config1 = ConfigFile.new()
 var config2 = ConfigFile.new()
 var config3 = ConfigFile.new()
-
+@onready var menu: PopupMenu = $camera/PopupMenu
+const two = preload("res://Scenes/Ships/Brigantine.tscn")
+const three = preload("res://Scenes/Ships/Frigate.tscn")
+const four = preload("res://Scenes/Ships/Galleon.tscn")
+const five = preload("res://Scenes/Ships/ManOfWar.tscn")
+const one = preload("res://Scenes/Ships/Sloop.tscn")
 @onready var timer = $Timer
 
 func _ready() -> void:
@@ -70,6 +75,9 @@ func save_game():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('shop'):
+		menu.visible = true
+		variables.inMenu = true
 	play.resources
 	if variables.load == true:
 		variables.load = false
@@ -161,3 +169,27 @@ func _on_inventory_gui_closed() -> void:
 
 func _on_inventory_gui_opened() -> void:
 	get_tree().paused = true
+
+
+func _on_popup_menu_id_pressed(id: int) -> void:
+	if id == 0:
+		var newShip = one.instantiate()
+		newShip.global_position = ship.global_position 
+		add_child(newShip)
+	if id == 1:
+		var newShip = two.instantiate()
+		newShip.global_position = ship.global_position
+		add_child(newShip)
+	if id == 2:
+		var newShip = three.instantiate()
+		newShip.global_position = ship.global_position
+		add_child(newShip)
+	if id == 3:
+		var newShip = four.instantiate()
+		newShip.global_position = ship.global_position
+		add_child(newShip)
+	if id == 4:
+		var newShip = five.instantiate()
+		newShip.global_position = ship.global_position
+		add_child(newShip) 
+	pass # Replace with function body.
