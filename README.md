@@ -7,6 +7,9 @@
 * Enemies and Traps - There is one bat that has 20 health and does 5 damage.
 * Tilemaps and Worldbuilding - There are two different tilesets, one is for props like trees and bridges, and the other is the actual water and ground tiles. The three areas are the starter island, the bigger island, and the ocean.
 * Combat - The player has two different combat options, slicing with sword, shooting gun, and cannon ball from the boat.
+* NPC - There are 3 npcs with a reusable framwork. I can extend a class and just change the dialogue. Everything else is the same.
+* Inventory - There is a currency system. You can collect coins by fighting enemies. You can also open an inventory.
+* Game Save - There is loading system and saving system that can be accesed at the start of the game and in game.
 
 ### Examples/Locations of Implemented Features for Grading
 * Inheritance - Different types of boats (check ships scenes folder) and enemies
