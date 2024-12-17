@@ -1,7 +1,9 @@
 1st Sprint:
 	Finished the player animations and basic movement. I also started working on the mechanics for the boat. I still need to create combat mechanics for the player, but other than I got a lot of things completed. There is a little bit of lack of communication, but other than that the team is doing good. 
+ 
 2nd Sprint:
 	Finished boat mechanics and ability to switch between player and boat. I also created different types of boats. All that is needed is to implement a system to upgrade the boat. There is some noticable lack of work on the project from the other team members, but other than that everything is going fine.
+ 
 3rd Sprint:
 	There is now a very big noticable decline in work. I'm trying my best to get as many easy points as possible, but the game will definitely be a little bare when compared to the original concept of the game.
 
